@@ -18,6 +18,22 @@
         <!-- Grid will be populated by JavaScript -->
     </main>
 
+    <div id="video-modal" class="video-modal" style="display:none;">
+        <div class="video-modal-backdrop"></div>
+        <div class="video-modal-content">
+            <button id="close-video-modal" class="video-modal-close">&times;</button>
+            <video id="scene-video" width="800" controls preload="auto" muted>
+                <source src="media/Memory Maker-compress.mp4" type="video/mp4">
+                <source src="media/memory-maker.webm" type="video/webm">
+                <source src="media/Memory Maker.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="additional-content" class="additional-content">
+                <!-- Additional content (text, images, videos) will be loaded here -->
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script src="script.js"></script>
 </body>

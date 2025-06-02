@@ -1,0 +1,1697 @@
+{
+  "frames": [
+    {
+      "sceneNumber": 1,
+      "startTimecode": "00:00:00.000",
+      "endTimecode": "00:00:02.042",
+      "startFrame": 1,
+      "endFrame": 49,
+      "duration": 2.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-001-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-001-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 2,
+      "startTimecode": "00:00:02.042",
+      "endTimecode": "00:00:04.417",
+      "startFrame": 50,
+      "endFrame": 106,
+      "duration": 2.375,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-002-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-002-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 3,
+      "startTimecode": "00:00:04.417",
+      "endTimecode": "00:00:05.208",
+      "startFrame": 107,
+      "endFrame": 125,
+      "duration": 0.792,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-003-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-003-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 4,
+      "startTimecode": "00:00:05.208",
+      "endTimecode": "00:00:08.917",
+      "startFrame": 126,
+      "endFrame": 214,
+      "duration": 3.708,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-004-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-004-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 5,
+      "startTimecode": "00:00:08.917",
+      "endTimecode": "00:00:09.583",
+      "startFrame": 215,
+      "endFrame": 230,
+      "duration": 0.667,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-005-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-005-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 6,
+      "startTimecode": "00:00:09.583",
+      "endTimecode": "00:00:11.500",
+      "startFrame": 231,
+      "endFrame": 276,
+      "duration": 1.917,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-006-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-006-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 7,
+      "startTimecode": "00:00:11.500",
+      "endTimecode": "00:00:13.542",
+      "startFrame": 277,
+      "endFrame": 325,
+      "duration": 2.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-007-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-007-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 8,
+      "startTimecode": "00:00:13.542",
+      "endTimecode": "00:00:16.875",
+      "startFrame": 326,
+      "endFrame": 405,
+      "duration": 3.333,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-008-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-008-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 9,
+      "startTimecode": "00:00:16.875",
+      "endTimecode": "00:00:19.333",
+      "startFrame": 406,
+      "endFrame": 464,
+      "duration": 2.458,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-009-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-009-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [
+          "media\\009-03.png",
+          "media\\009-04.png",
+          "media\\009-05.png"
+        ],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 10,
+      "startTimecode": "00:00:19.333",
+      "endTimecode": "00:00:20.417",
+      "startFrame": 465,
+      "endFrame": 490,
+      "duration": 1.083,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-010-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-010-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 11,
+      "startTimecode": "00:00:20.417",
+      "endTimecode": "00:00:22.250",
+      "startFrame": 491,
+      "endFrame": 534,
+      "duration": 1.833,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-011-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-011-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 12,
+      "startTimecode": "00:00:22.250",
+      "endTimecode": "00:00:24.625",
+      "startFrame": 535,
+      "endFrame": 591,
+      "duration": 2.375,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-012-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-012-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 13,
+      "startTimecode": "00:00:24.625",
+      "endTimecode": "00:00:25.792",
+      "startFrame": 592,
+      "endFrame": 619,
+      "duration": 1.167,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-013-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-013-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 14,
+      "startTimecode": "00:00:25.792",
+      "endTimecode": "00:00:29.458",
+      "startFrame": 620,
+      "endFrame": 707,
+      "duration": 3.667,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-014-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-014-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 15,
+      "startTimecode": "00:00:29.458",
+      "endTimecode": "00:00:31.500",
+      "startFrame": 708,
+      "endFrame": 756,
+      "duration": 2.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-015-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-015-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 16,
+      "startTimecode": "00:00:31.500",
+      "endTimecode": "00:00:34.042",
+      "startFrame": 757,
+      "endFrame": 817,
+      "duration": 2.542,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-016-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-016-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 17,
+      "startTimecode": "00:00:34.042",
+      "endTimecode": "00:00:36.125",
+      "startFrame": 818,
+      "endFrame": 867,
+      "duration": 2.083,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-017-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-017-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 18,
+      "startTimecode": "00:00:36.125",
+      "endTimecode": "00:00:38.583",
+      "startFrame": 868,
+      "endFrame": 926,
+      "duration": 2.458,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-018-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-018-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 19,
+      "startTimecode": "00:00:38.583",
+      "endTimecode": "00:00:41.250",
+      "startFrame": 927,
+      "endFrame": 990,
+      "duration": 2.667,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-019-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-019-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 20,
+      "startTimecode": "00:00:41.250",
+      "endTimecode": "00:00:44.250",
+      "startFrame": 991,
+      "endFrame": 1062,
+      "duration": 3,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-020-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-020-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 21,
+      "startTimecode": "00:00:44.250",
+      "endTimecode": "00:00:47.667",
+      "startFrame": 1063,
+      "endFrame": 1144,
+      "duration": 3.417,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-021-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-021-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 22,
+      "startTimecode": "00:00:47.667",
+      "endTimecode": "00:00:51.208",
+      "startFrame": 1145,
+      "endFrame": 1229,
+      "duration": 3.542,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-022-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-022-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 23,
+      "startTimecode": "00:00:51.208",
+      "endTimecode": "00:00:54.167",
+      "startFrame": 1230,
+      "endFrame": 1300,
+      "duration": 2.958,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-023-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-023-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 24,
+      "startTimecode": "00:00:54.167",
+      "endTimecode": "00:00:56.500",
+      "startFrame": 1301,
+      "endFrame": 1356,
+      "duration": 2.333,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-024-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-024-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 25,
+      "startTimecode": "00:00:56.500",
+      "endTimecode": "00:00:57.958",
+      "startFrame": 1357,
+      "endFrame": 1391,
+      "duration": 1.458,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-025-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-025-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 26,
+      "startTimecode": "00:00:57.958",
+      "endTimecode": "00:01:00.167",
+      "startFrame": 1392,
+      "endFrame": 1444,
+      "duration": 2.208,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-026-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-026-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 27,
+      "startTimecode": "00:01:00.167",
+      "endTimecode": "00:01:02.958",
+      "startFrame": 1445,
+      "endFrame": 1511,
+      "duration": 2.792,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-027-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-027-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [
+          "media\\027-01.png",
+          "media\\027-02.png",
+          "media\\027-03.png",
+          "media\\027-04.png",
+          "media\\027-05.png"
+        ],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 28,
+      "startTimecode": "00:01:02.958",
+      "endTimecode": "00:01:05.167",
+      "startFrame": 1512,
+      "endFrame": 1564,
+      "duration": 2.208,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-028-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-028-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 29,
+      "startTimecode": "00:01:05.167",
+      "endTimecode": "00:01:06.083",
+      "startFrame": 1565,
+      "endFrame": 1586,
+      "duration": 0.917,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-029-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-029-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 30,
+      "startTimecode": "00:01:06.083",
+      "endTimecode": "00:01:06.708",
+      "startFrame": 1587,
+      "endFrame": 1601,
+      "duration": 0.625,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-030-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-030-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 31,
+      "startTimecode": "00:01:06.708",
+      "endTimecode": "00:01:07.750",
+      "startFrame": 1602,
+      "endFrame": 1626,
+      "duration": 1.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-031-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-031-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 32,
+      "startTimecode": "00:01:07.750",
+      "endTimecode": "00:01:09.042",
+      "startFrame": 1627,
+      "endFrame": 1657,
+      "duration": 1.292,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-032-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-032-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 33,
+      "startTimecode": "00:01:09.042",
+      "endTimecode": "00:01:11.417",
+      "startFrame": 1658,
+      "endFrame": 1714,
+      "duration": 2.375,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-033-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-033-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 34,
+      "startTimecode": "00:01:11.417",
+      "endTimecode": "00:01:13.667",
+      "startFrame": 1715,
+      "endFrame": 1768,
+      "duration": 2.25,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-034-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-034-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 35,
+      "startTimecode": "00:01:13.667",
+      "endTimecode": "00:01:16.250",
+      "startFrame": 1769,
+      "endFrame": 1830,
+      "duration": 2.583,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-035-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-035-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 36,
+      "startTimecode": "00:01:16.250",
+      "endTimecode": "00:01:19.417",
+      "startFrame": 1831,
+      "endFrame": 1906,
+      "duration": 3.167,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-036-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-036-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 37,
+      "startTimecode": "00:01:19.417",
+      "endTimecode": "00:01:21.542",
+      "startFrame": 1907,
+      "endFrame": 1957,
+      "duration": 2.125,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-037-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-037-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 38,
+      "startTimecode": "00:01:21.542",
+      "endTimecode": "00:01:23.167",
+      "startFrame": 1958,
+      "endFrame": 1996,
+      "duration": 1.625,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-038-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-038-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 39,
+      "startTimecode": "00:01:23.167",
+      "endTimecode": "00:01:24.833",
+      "startFrame": 1997,
+      "endFrame": 2036,
+      "duration": 1.667,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-039-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-039-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 40,
+      "startTimecode": "00:01:24.833",
+      "endTimecode": "00:01:26.583",
+      "startFrame": 2037,
+      "endFrame": 2078,
+      "duration": 1.75,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-040-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-040-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 41,
+      "startTimecode": "00:01:26.583",
+      "endTimecode": "00:01:27.792",
+      "startFrame": 2079,
+      "endFrame": 2107,
+      "duration": 1.208,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-041-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-041-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 42,
+      "startTimecode": "00:01:27.792",
+      "endTimecode": "00:01:29.875",
+      "startFrame": 2108,
+      "endFrame": 2157,
+      "duration": 2.083,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-042-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-042-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 43,
+      "startTimecode": "00:01:29.875",
+      "endTimecode": "00:01:34.875",
+      "startFrame": 2158,
+      "endFrame": 2277,
+      "duration": 5,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-043-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-043-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 44,
+      "startTimecode": "00:01:34.875",
+      "endTimecode": "00:01:36.667",
+      "startFrame": 2278,
+      "endFrame": 2320,
+      "duration": 1.792,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-044-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-044-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 45,
+      "startTimecode": "00:01:36.667",
+      "endTimecode": "00:01:39.458",
+      "startFrame": 2321,
+      "endFrame": 2387,
+      "duration": 2.792,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-045-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-045-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 46,
+      "startTimecode": "00:01:39.458",
+      "endTimecode": "00:01:42.458",
+      "startFrame": 2388,
+      "endFrame": 2459,
+      "duration": 3,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-046-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-046-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 47,
+      "startTimecode": "00:01:42.458",
+      "endTimecode": "00:01:44.500",
+      "startFrame": 2460,
+      "endFrame": 2508,
+      "duration": 2.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-047-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-047-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 48,
+      "startTimecode": "00:01:44.500",
+      "endTimecode": "00:01:46.542",
+      "startFrame": 2509,
+      "endFrame": 2557,
+      "duration": 2.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-048-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-048-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 49,
+      "startTimecode": "00:01:46.542",
+      "endTimecode": "00:01:48.792",
+      "startFrame": 2558,
+      "endFrame": 2611,
+      "duration": 2.25,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-049-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-049-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 50,
+      "startTimecode": "00:01:48.792",
+      "endTimecode": "00:01:50.125",
+      "startFrame": 2612,
+      "endFrame": 2643,
+      "duration": 1.333,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-050-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-050-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 51,
+      "startTimecode": "00:01:50.125",
+      "endTimecode": "00:01:51.208",
+      "startFrame": 2644,
+      "endFrame": 2669,
+      "duration": 1.083,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-051-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-051-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 52,
+      "startTimecode": "00:01:51.208",
+      "endTimecode": "00:01:52.667",
+      "startFrame": 2670,
+      "endFrame": 2704,
+      "duration": 1.458,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-052-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-052-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 53,
+      "startTimecode": "00:01:52.667",
+      "endTimecode": "00:01:54.958",
+      "startFrame": 2705,
+      "endFrame": 2759,
+      "duration": 2.292,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-053-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-053-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 54,
+      "startTimecode": "00:01:54.958",
+      "endTimecode": "00:01:57.292",
+      "startFrame": 2760,
+      "endFrame": 2815,
+      "duration": 2.333,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-054-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-054-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 55,
+      "startTimecode": "00:01:57.292",
+      "endTimecode": "00:02:01.042",
+      "startFrame": 2816,
+      "endFrame": 2905,
+      "duration": 3.75,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-055-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-055-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 56,
+      "startTimecode": "00:02:01.042",
+      "endTimecode": "00:02:04.250",
+      "startFrame": 2906,
+      "endFrame": 2982,
+      "duration": 3.208,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-056-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-056-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 57,
+      "startTimecode": "00:02:04.250",
+      "endTimecode": "00:02:06.292",
+      "startFrame": 2983,
+      "endFrame": 3031,
+      "duration": 2.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-057-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-057-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 58,
+      "startTimecode": "00:02:06.292",
+      "endTimecode": "00:02:09.458",
+      "startFrame": 3032,
+      "endFrame": 3107,
+      "duration": 3.167,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-058-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-058-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 59,
+      "startTimecode": "00:02:09.458",
+      "endTimecode": "00:02:12.083",
+      "startFrame": 3108,
+      "endFrame": 3170,
+      "duration": 2.625,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-059-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-059-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 60,
+      "startTimecode": "00:02:12.083",
+      "endTimecode": "00:02:14.083",
+      "startFrame": 3171,
+      "endFrame": 3218,
+      "duration": 2,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-060-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-060-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 61,
+      "startTimecode": "00:02:14.083",
+      "endTimecode": "00:02:16.625",
+      "startFrame": 3219,
+      "endFrame": 3279,
+      "duration": 2.542,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-061-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-061-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 62,
+      "startTimecode": "00:02:16.625",
+      "endTimecode": "00:02:18.958",
+      "startFrame": 3280,
+      "endFrame": 3335,
+      "duration": 2.333,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-062-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-062-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 63,
+      "startTimecode": "00:02:18.958",
+      "endTimecode": "00:02:22.833",
+      "startFrame": 3336,
+      "endFrame": 3428,
+      "duration": 3.875,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-063-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-063-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 64,
+      "startTimecode": "00:02:22.833",
+      "endTimecode": "00:02:24.583",
+      "startFrame": 3429,
+      "endFrame": 3470,
+      "duration": 1.75,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-064-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-064-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 65,
+      "startTimecode": "00:02:24.583",
+      "endTimecode": "00:02:26.875",
+      "startFrame": 3471,
+      "endFrame": 3525,
+      "duration": 2.292,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-065-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-065-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 66,
+      "startTimecode": "00:02:26.875",
+      "endTimecode": "00:02:29.208",
+      "startFrame": 3526,
+      "endFrame": 3581,
+      "duration": 2.333,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-066-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-066-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 67,
+      "startTimecode": "00:02:29.208",
+      "endTimecode": "00:02:32.083",
+      "startFrame": 3582,
+      "endFrame": 3650,
+      "duration": 2.875,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-067-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-067-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 68,
+      "startTimecode": "00:02:32.083",
+      "endTimecode": "00:02:33.125",
+      "startFrame": 3651,
+      "endFrame": 3675,
+      "duration": 1.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-068-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-068-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 69,
+      "startTimecode": "00:02:33.125",
+      "endTimecode": "00:02:35.167",
+      "startFrame": 3676,
+      "endFrame": 3724,
+      "duration": 2.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-069-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-069-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 70,
+      "startTimecode": "00:02:35.167",
+      "endTimecode": "00:02:36.500",
+      "startFrame": 3725,
+      "endFrame": 3756,
+      "duration": 1.333,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-070-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-070-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 71,
+      "startTimecode": "00:02:36.500",
+      "endTimecode": "00:02:37.583",
+      "startFrame": 3757,
+      "endFrame": 3782,
+      "duration": 1.083,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-071-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-071-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 72,
+      "startTimecode": "00:02:37.583",
+      "endTimecode": "00:02:38.958",
+      "startFrame": 3783,
+      "endFrame": 3815,
+      "duration": 1.375,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-072-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-072-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 73,
+      "startTimecode": "00:02:38.958",
+      "endTimecode": "00:02:40.458",
+      "startFrame": 3816,
+      "endFrame": 3851,
+      "duration": 1.5,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-073-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-073-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 74,
+      "startTimecode": "00:02:40.458",
+      "endTimecode": "00:02:42.042",
+      "startFrame": 3852,
+      "endFrame": 3889,
+      "duration": 1.583,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-074-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-074-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 75,
+      "startTimecode": "00:02:42.042",
+      "endTimecode": "00:02:42.792",
+      "startFrame": 3890,
+      "endFrame": 3907,
+      "duration": 0.75,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-075-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-075-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 76,
+      "startTimecode": "00:02:42.792",
+      "endTimecode": "00:02:44.250",
+      "startFrame": 3908,
+      "endFrame": 3942,
+      "duration": 1.458,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-076-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-076-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 77,
+      "startTimecode": "00:02:44.250",
+      "endTimecode": "00:02:45.375",
+      "startFrame": 3943,
+      "endFrame": 3969,
+      "duration": 1.125,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-077-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-077-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 78,
+      "startTimecode": "00:02:45.375",
+      "endTimecode": "00:02:46.083",
+      "startFrame": 3970,
+      "endFrame": 3986,
+      "duration": 0.708,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-078-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-078-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 79,
+      "startTimecode": "00:02:46.083",
+      "endTimecode": "00:02:47.625",
+      "startFrame": 3987,
+      "endFrame": 4023,
+      "duration": 1.542,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-079-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-079-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 80,
+      "startTimecode": "00:02:47.625",
+      "endTimecode": "00:02:49.250",
+      "startFrame": 4024,
+      "endFrame": 4062,
+      "duration": 1.625,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-080-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-080-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 81,
+      "startTimecode": "00:02:49.250",
+      "endTimecode": "00:02:53.000",
+      "startFrame": 4063,
+      "endFrame": 4152,
+      "duration": 3.75,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-081-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-081-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 82,
+      "startTimecode": "00:02:53.000",
+      "endTimecode": "00:02:54.375",
+      "startFrame": 4153,
+      "endFrame": 4185,
+      "duration": 1.375,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-082-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-082-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 83,
+      "startTimecode": "00:02:54.375",
+      "endTimecode": "00:02:58.917",
+      "startFrame": 4186,
+      "endFrame": 4294,
+      "duration": 4.542,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-083-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-083-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 84,
+      "startTimecode": "00:02:58.917",
+      "endTimecode": "00:03:00.000",
+      "startFrame": 4295,
+      "endFrame": 4320,
+      "duration": 1.083,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-084-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-084-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 85,
+      "startTimecode": "00:03:00.000",
+      "endTimecode": "00:03:01.667",
+      "startFrame": 4321,
+      "endFrame": 4360,
+      "duration": 1.667,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-085-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-085-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 86,
+      "startTimecode": "00:03:01.667",
+      "endTimecode": "00:03:03.458",
+      "startFrame": 4361,
+      "endFrame": 4403,
+      "duration": 1.792,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-086-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-086-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 87,
+      "startTimecode": "00:03:03.458",
+      "endTimecode": "00:03:06.083",
+      "startFrame": 4404,
+      "endFrame": 4466,
+      "duration": 2.625,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-087-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-087-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 88,
+      "startTimecode": "00:03:06.083",
+      "endTimecode": "00:03:07.458",
+      "startFrame": 4467,
+      "endFrame": 4499,
+      "duration": 1.375,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-088-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-088-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 89,
+      "startTimecode": "00:03:07.458",
+      "endTimecode": "00:03:10.583",
+      "startFrame": 4500,
+      "endFrame": 4574,
+      "duration": 3.125,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-089-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-089-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 90,
+      "startTimecode": "00:03:10.583",
+      "endTimecode": "00:03:13.000",
+      "startFrame": 4575,
+      "endFrame": 4632,
+      "duration": 2.417,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-090-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-090-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 91,
+      "startTimecode": "00:03:13.000",
+      "endTimecode": "00:03:16.333",
+      "startFrame": 4633,
+      "endFrame": 4712,
+      "duration": 3.333,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-091-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-091-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 92,
+      "startTimecode": "00:03:16.333",
+      "endTimecode": "00:03:18.542",
+      "startFrame": 4713,
+      "endFrame": 4765,
+      "duration": 2.208,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-092-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-092-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 93,
+      "startTimecode": "00:03:18.542",
+      "endTimecode": "00:03:20.583",
+      "startFrame": 4766,
+      "endFrame": 4814,
+      "duration": 2.042,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-093-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-093-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 94,
+      "startTimecode": "00:03:20.583",
+      "endTimecode": "00:03:22.208",
+      "startFrame": 4815,
+      "endFrame": 4853,
+      "duration": 1.625,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-094-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-094-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 95,
+      "startTimecode": "00:03:22.208",
+      "endTimecode": "00:03:24.958",
+      "startFrame": 4854,
+      "endFrame": 4919,
+      "duration": 2.75,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-095-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-095-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 96,
+      "startTimecode": "00:03:24.958",
+      "endTimecode": "00:03:27.833",
+      "startFrame": 4920,
+      "endFrame": 4988,
+      "duration": 2.875,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-096-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-096-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 97,
+      "startTimecode": "00:03:27.833",
+      "endTimecode": "00:03:30.125",
+      "startFrame": 4989,
+      "endFrame": 5043,
+      "duration": 2.292,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-097-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-097-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 98,
+      "startTimecode": "00:03:30.125",
+      "endTimecode": "00:03:35.750",
+      "startFrame": 5044,
+      "endFrame": 5178,
+      "duration": 5.625,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-098-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-098-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    },
+    {
+      "sceneNumber": 99,
+      "startTimecode": "00:03:35.750",
+      "endTimecode": "00:04:41.000",
+      "startFrame": 5179,
+      "endFrame": 6744,
+      "duration": 65.25,
+      "thumbnail": "output/shots/thumbnails/Memory Maker-Scene-099-01.jpg",
+      "fullImage": "output/shots/Memory Maker-Scene-099-01.jpg",
+      "content": {
+        "title": "",
+        "description": "",
+        "additionalImages": [],
+        "videoClips": [],
+        "notes": ""
+      }
+    }
+  ]
+}
