@@ -1,0 +1,16 @@
+{
+  "name": "mm-breakdown",
+  "version": "1.0.0",
+  "description": "This tool extracts individual shots from the \"Memory Maker\" video and saves them as high-quality images.",
+  "main": "create_thumbnails.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jimp": "^1.6.0",
+    "sharp": "^0.34.2"
+  }
+}
