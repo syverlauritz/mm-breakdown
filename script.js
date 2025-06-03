@@ -55,10 +55,15 @@ function getFrameDuration(frame) {
 // Video modal logic
 let modalLoopStart = 0;
 let modalLoopEnd = 0;
-function openVideoModal(frame) {
+let currentFrameIndex = -1; // Keep track of the currently displayed frame index
+let allFramesData = []; // Store all frames data
+
+function openVideoModal(frame, index) { // Pass index here
     const modal = document.getElementById('video-modal');
     const video = document.getElementById('scene-video');
     const contentDiv = document.getElementById('additional-content');
+    
+    currentFrameIndex = index; // Set current index
     
     // Clear previous content
     contentDiv.innerHTML = '';
@@ -77,7 +82,7 @@ function openVideoModal(frame) {
     }
     if (content.notes) {
         const notes = document.createElement('p');
-        notes.textContent = `Notes: ${content.notes}`;
+        notes.textContent = content.notes;
         contentDiv.appendChild(notes);
     }
 
@@ -103,12 +108,12 @@ function openVideoModal(frame) {
 
     const singleFrameDuration = getFrameDuration(frame);
     modalLoopStart = timecodeToSeconds(frame.startTimecode) + singleFrameDuration;
-    // Calculate end time from start time + duration, then trim one frame
+    // Calculate end time from start time + duration, then trim one frame (reverted to previous logic)
     modalLoopEnd = timecodeToSeconds(frame.startTimecode) + frame.duration - singleFrameDuration;
 
     // Ensure valid range (handle very short frames or calculation inaccuracies)
     if (modalLoopEnd <= modalLoopStart) {
-         // If trimming results in an invalid range, use the original start and end times
+         // If trimming results in an invalid range, use the original start and end times (reverted to previous logic)
         modalLoopStart = timecodeToSeconds(frame.startTimecode);
         modalLoopEnd = timecodeToSeconds(frame.endTimecode);
     }
@@ -118,13 +123,14 @@ function openVideoModal(frame) {
     video.play();
     modal.style.display = 'flex';
     document.body.classList.add('modal-open'); // Add class to body
+    document.addEventListener('keydown', handleModalKeyPress); // Add keyboard listener
 }
 
 // Loop the segment in the modal
 const sceneVideo = document.getElementById('scene-video');
 sceneVideo.addEventListener('timeupdate', function() {
     // Add a small buffer and check if almost at the end
-    if (sceneVideo.currentTime >= modalLoopEnd - 0.1) { // Increased buffer
+    if (sceneVideo.currentTime >= modalLoopEnd - 0.2) { // Increased buffer to 0.2
         sceneVideo.currentTime = modalLoopStart;
         sceneVideo.play();
     }
@@ -137,9 +143,38 @@ function closeVideoModal() {
     video.pause();
     modal.style.display = 'none';
     document.body.classList.remove('modal-open'); // Remove class from body
+    document.removeEventListener('keydown', handleModalKeyPress); // Remove listener
 }
 document.getElementById('close-video-modal').onclick = closeVideoModal;
 document.querySelector('.video-modal-backdrop').onclick = closeVideoModal;
+
+// Add event listeners for navigation buttons
+document.getElementById('prev-shot').onclick = () => {
+    if (currentFrameIndex > 0) {
+        openVideoModal(allFramesData[currentFrameIndex - 1], currentFrameIndex - 1);
+    }
+};
+document.getElementById('next-shot').onclick = () => {
+    if (currentFrameIndex < allFramesData.length - 1) {
+        openVideoModal(allFramesData[currentFrameIndex + 1], currentFrameIndex + 1);
+    }
+};
+document.getElementById('modal-close-text').onclick = closeVideoModal;
+
+// Keyboard navigation for modal
+function handleModalKeyPress(event) {
+    if (event.key === 'Escape') {
+        closeVideoModal();
+    } else if (event.key === 'ArrowLeft') {
+        if (currentFrameIndex > 0) {
+            openVideoModal(allFramesData[currentFrameIndex - 1], currentFrameIndex - 1);
+        }
+    } else if (event.key === 'ArrowRight') {
+        if (currentFrameIndex < allFramesData.length - 1) {
+            openVideoModal(allFramesData[currentFrameIndex + 1], currentFrameIndex + 1);
+        }
+    }
+}
 
 // Floating preview video logic
 let previewVideo = null;
@@ -172,15 +207,16 @@ function showPreviewVideo(frame, gridItem) {
     // Set segment
     const singleFrameDuration = getFrameDuration(frame);
     const start = timecodeToSeconds(frame.startTimecode) + singleFrameDuration;
-     // Calculate end time from start time + duration, then trim one frame
-    let end = timecodeToSeconds(frame.startTimecode) + frame.duration - singleFrameDuration;
+     // Calculate end time from start time + duration, then trim two frames
+    let end = timecodeToSeconds(frame.startTimecode) + frame.duration - (2 * singleFrameDuration);
 
     // Ensure valid range (handle very short frames or calculation inaccuracies)
     if (end <= start) {
-        const originalStart = timecodeToSeconds(frame.startTimecode);
-        const originalEnd = timecodeToSeconds(frame.endTimecode);
-        start = originalStart;
-        end = originalEnd;
+        // If trimming results in an invalid range, use the original start time + one frame duration
+        end = timecodeToSeconds(frame.startTimecode) + singleFrameDuration; // Keep at least one frame
+        if (end <= start) { // If even one frame is invalid, use original start
+             end = timecodeToSeconds(frame.startTimecode);
+        }
     }
     
     // Remove any existing preview video and overlay from their parents
@@ -287,7 +323,7 @@ function createGridItem(frame, index) {
     // Add video preview and modal functionality
     div.addEventListener('mouseenter', () => showPreviewVideo(frame, div));
     div.addEventListener('mouseleave', hidePreviewVideo);
-    div.addEventListener('click', () => openVideoModal(frame)); // Pass the entire frame object
+    div.addEventListener('click', () => openVideoModal(frame, index)); // Pass index
     
     return div;
 }
@@ -299,6 +335,8 @@ async function populateGrid() {
     try {
         const response = await fetch('frames.json');
         const data = await response.json();
+        
+        allFramesData = data.frames; // Store all frames
         
         data.frames.forEach((frame, index) => {
             const gridItem = createGridItem(frame, index);

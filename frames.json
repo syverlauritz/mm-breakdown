@@ -154,7 +154,7 @@
           "media\\009-05.png"
         ],
         "videoClips": [],
-        "notes": ""
+        "notes": "The lion and robot were inpainted on an appropriately lit carpet using Midjourney. Alludes to Wittgenstein's famous quote, \"If a lion could speak, we could not understand him,\" which highlights the limitations of language and understanding. \r\n\r\nIt suggests that even if a lion could use human language, its meaning and experience would be so different from ours that we couldn't truly grasp its perspective. \r\n\r\nThe core idea is that understanding goes beyond simply knowing the words and syntax; it involves sharing a similar \"form of life\" and understanding the underlying meaning and context. Which is very relevant to the story here.\nThe lion and robot were inpainted on an appropriately lit carpet using Midjourney. Alludes to Wittgenstein's famous quote, \"If a lion could speak, we could not understand him,\" which highlights the limitations of language and understanding. \r\n\r\nIt suggests that even if a lion could use human language, its meaning and experience would be so different from ours that we couldn't truly grasp its perspective. \r\n\r\nThe core idea is that understanding goes beyond simply knowing the words and syntax; it involves sharing a similar \"form of life\" and understanding the underlying meaning and context. Which is very relevant to the story here."
       }
     },
     {
@@ -459,14 +459,13 @@
         "title": "",
         "description": "",
         "additionalImages": [
-          "media\\027-01.png",
           "media\\027-02.png",
           "media\\027-03.png",
           "media\\027-04.png",
           "media\\027-05.png"
         ],
         "videoClips": [],
-        "notes": ""
+        "notes": "Original image from Midjourney. To match the government vehicle, I literally drew it in using the brush tool in photoshop, then ran it through img 2 img at tensor.art.\r\n\r\nKling refused to give it speed until I gave the still image some motion blur."
       }
     },
     {
@@ -686,8 +685,12 @@
         "title": "",
         "description": "",
         "additionalImages": [],
-        "videoClips": [],
-        "notes": ""
+        "videoClips": [
+          "media\\040-02.mp4",
+          "media\\040-04.mp4",
+          "media\\040-05.mp4"
+        ],
+        "notes": "Without a doubt one of the more challenging scenes, both in terms of designing the room, getting the right still, and the final animation.\r\n\r\nAs is often the case with shots from further away, her face had to be carefully tracked and comped onto her body in order to preserve her likeness."
       }
     },
     {

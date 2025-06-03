@@ -239,11 +239,11 @@ body.modal-open {
     box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     padding: 20px;
     max-width: 95vw;
-    max-height: 90vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto; /* Make modal content scrollable */
+    overflow-y: hidden;
 }
 .video-modal-close {
     position: absolute;
@@ -263,7 +263,7 @@ body.modal-open {
 #scene-video {
     width: 100%;
     max-width: 800px;
-    max-height: 70vh;
+    height: auto;
     background: #000;
     border-radius: 6px;
     display: block;
@@ -285,20 +285,30 @@ body.modal-open {
     max-width: 800px;
     box-sizing: border-box;
     margin-top: 20px;
-    margin-left: auto;
+    margin-bottom: 20px;
     margin-right: auto;
+    font-size: 0.9rem;
 }
 
-.additional-content > *:not(:last-child) {
-    margin-bottom: 10px;
+/* Add left margin only to text elements */
+.additional-content p,
+.additional-content h3 {
+    margin-left: 40px;
+    margin-bottom: 20px; /* Keep bottom margin for text */
 }
 
+/* Add specific bottom margin for images and videos */
 .additional-content img,
 .additional-content video {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 40px auto; /* 40px bottom margin, auto left/right for centering */
+}
+
+/* Ensure no bottom margin on the very last element */
+.additional-content > *:last-child {
+    margin-bottom: 0;
 }
 
 /* Style for the special content indicator */
@@ -312,6 +322,44 @@ body.modal-open {
     font-size: 2.5rem;
     font-weight: bold;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Navigation for the modal */
+.modal-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;
+    z-index: 5;
+    flex-shrink: 0;
+    padding: 0 10px;
+}
+
+.nav-arrow {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.nav-arrow:hover {
+    color: #ff4444;
+}
+
+.close-text {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-text:hover {
+    color: #ff4444;
 }
 
 /* Ensure timecode and frame number stay visible on hover */
@@ -347,4 +395,35 @@ body.modal-open {
     height: 100%;
     object-fit: cover;
     z-index: 2;
+}
+
+.modal-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    max-height: calc(90vh - 80px);
+    overflow-y: auto;
+    /* Custom scrollbar styles */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.1); /* For Firefox */
+}
+
+/* Custom scrollbar for Webkit browsers (Chrome, Safari, etc.) */
+.modal-content-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content-wrapper::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.modal-content-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.modal-content-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
 } 

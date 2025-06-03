@@ -22,6 +22,7 @@
         <div class="video-modal-backdrop"></div>
         <div class="video-modal-content">
             <button id="close-video-modal" class="video-modal-close">&times;</button>
+            <div class="modal-content-wrapper">
             <video id="scene-video" width="800" controls preload="auto" muted>
                 <source src="media/Memory Maker-compress.mp4" type="video/mp4">
                 <source src="media/memory-maker.webm" type="video/webm">
@@ -30,6 +31,12 @@
             </video>
             <div id="additional-content" class="additional-content">
                 <!-- Additional content (text, images, videos) will be loaded here -->
+            </div>
+            </div>
+            <div class="modal-navigation">
+                <button class="nav-arrow" id="prev-shot">&lt;</button>
+                <span class="close-text" id="modal-close-text">CLOSE</span>
+                <button class="nav-arrow" id="next-shot">&gt;</button>
             </div>
         </div>
     </div>
