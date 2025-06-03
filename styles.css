@@ -220,7 +220,7 @@ body.modal-open {
 .video-modal {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 10000;
+    z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -369,32 +369,32 @@ body.modal-open {
     z-index: 4;
 }
 
-/* Darken preview video on hover */
-.grid-item .preview-video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0);
-    transition: background 0.3s ease;
+/* Preview video overlay that appears on hover */
+.preview-video-overlay {
+    position: fixed;
     pointer-events: none;
-    z-index: 3;
+    z-index: 9999;
+    border: 5px solid yellow;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    /* Make it completely solid red for debugging */
+    background: red !important;
+    /* Match grid item aspect ratio */
+    aspect-ratio: 16/9;
+    opacity: 1 !important;
+    display: block !important;
 }
 
-.grid-item:hover .preview-video-overlay {
-    background: rgba(0,0,0,0.35);
-}
-
-/* Update preview video style */
-.grid-item video {
-    position: absolute;
-    top: 0;
-    left: 0;
+.preview-video-overlay video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 2;
+    display: block;
+}
+
+/* Update preview video style - this is now handled by the overlay */
+.grid-item video {
+    display: none;
 }
 
 .modal-content-wrapper {

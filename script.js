@@ -59,9 +59,18 @@ let currentFrameIndex = -1; // Keep track of the currently displayed frame index
 let allFramesData = []; // Store all frames data
 
 function openVideoModal(frame, index) { // Pass index here
+    console.log('openVideoModal called for scene', frame.sceneNumber, 'index', index);
     const modal = document.getElementById('video-modal');
     const video = document.getElementById('scene-video');
     const contentDiv = document.getElementById('additional-content');
+    
+    console.log('Modal element:', modal);
+    console.log('Video element:', video);
+    
+    if (!modal || !video) {
+        console.error('Modal or video element not found!');
+        return;
+    }
     
     currentFrameIndex = index; // Set current index
     
@@ -108,20 +117,59 @@ function openVideoModal(frame, index) { // Pass index here
 
     const singleFrameDuration = getFrameDuration(frame);
     modalLoopStart = timecodeToSeconds(frame.startTimecode) + singleFrameDuration;
-    // Calculate end time from start time + duration, then trim one frame (reverted to previous logic)
+    // Calculate end time from start time + duration, then trim one frame
     modalLoopEnd = timecodeToSeconds(frame.startTimecode) + frame.duration - singleFrameDuration;
 
     // Ensure valid range (handle very short frames or calculation inaccuracies)
     if (modalLoopEnd <= modalLoopStart) {
-         // If trimming results in an invalid range, use the original start and end times (reverted to previous logic)
+         // If trimming results in an invalid range, use the original start and end times
         modalLoopStart = timecodeToSeconds(frame.startTimecode);
         modalLoopEnd = timecodeToSeconds(frame.endTimecode);
     }
 
-    video.currentTime = modalLoopStart;
+    console.log(`Modal scene ${frame.sceneNumber}: ${modalLoopStart.toFixed(3)}s to ${modalLoopEnd.toFixed(3)}s`);
+
     video.muted = true; // default muted
-    video.play();
+    
+    console.log('About to show modal...');
     modal.style.display = 'flex';
+    modal.style.zIndex = '99999';
+    console.log('Modal should now be visible');
+    console.log('Modal computed style:', window.getComputedStyle(modal));
+    console.log('Modal display:', modal.style.display);
+    console.log('Modal z-index:', modal.style.zIndex);
+    
+    // Wait for video metadata to load before setting currentTime
+    const setVideoTimeAndPlay = () => {
+        console.log('Video metadata loaded, trying currentTime approach with seekable video');
+        console.log('Target start time:', modalLoopStart);
+        console.log('Video duration:', video.duration);
+        console.log('Video readyState:', video.readyState);
+        
+        // NEW APPROACH: Play first, then seek
+        video.play().then(() => {
+            console.log('Video started playing, now seeking to:', modalLoopStart);
+            
+            // Small delay to ensure playback has actually started
+            setTimeout(() => {
+                video.currentTime = modalLoopStart;
+                console.log('Set currentTime to:', modalLoopStart);
+                console.log('Actual currentTime after setting:', video.currentTime);
+            }, 100);
+            
+        }).catch(error => {
+            console.error('Error playing video:', error);
+        });
+    };
+    
+    if (video.readyState >= 1) {
+        // Metadata already loaded
+        setVideoTimeAndPlay();
+    } else {
+        // Wait for metadata to load
+        video.addEventListener('loadedmetadata', setVideoTimeAndPlay, { once: true });
+    }
+    
     document.body.classList.add('modal-open'); // Add class to body
     document.addEventListener('keydown', handleModalKeyPress); // Add keyboard listener
 }
@@ -129,21 +177,39 @@ function openVideoModal(frame, index) { // Pass index here
 // Loop the segment in the modal
 const sceneVideo = document.getElementById('scene-video');
 sceneVideo.addEventListener('timeupdate', function() {
-    // Add a small buffer and check if almost at the end
-    if (sceneVideo.currentTime >= modalLoopEnd - 0.2) { // Increased buffer to 0.2
+    // Ensure we're still within the expected timeframe and not paused
+    if (sceneVideo.paused || sceneVideo.ended) return;
+    
+    console.log('timeupdate event - currentTime:', sceneVideo.currentTime, 'modalLoopStart:', modalLoopStart, 'modalLoopEnd:', modalLoopEnd);
+    
+    // Check if we're at or past the end time with a smaller buffer for more precision
+    if (sceneVideo.currentTime >= modalLoopEnd - 0.1) {
+        console.log('Looping video back to start');
         sceneVideo.currentTime = modalLoopStart;
-        sceneVideo.play();
+        // Ensure playback continues
+        if (sceneVideo.paused) {
+            sceneVideo.play();
+        }
+    }
+    
+    // Also check if we're somehow before the start time (shouldn't happen but safety check)
+    if (sceneVideo.currentTime < modalLoopStart) {
+        console.log('Video before start time, jumping to start');
+        sceneVideo.currentTime = modalLoopStart;
     }
 });
 
 // Close modal logic
 function closeVideoModal() {
+    console.log('closeVideoModal called');
     const modal = document.getElementById('video-modal');
     const video = document.getElementById('scene-video');
+    console.log('Pausing video and hiding modal');
     video.pause();
     modal.style.display = 'none';
     document.body.classList.remove('modal-open'); // Remove class from body
     document.removeEventListener('keydown', handleModalKeyPress); // Remove listener
+    console.log('Modal closed');
 }
 document.getElementById('close-video-modal').onclick = closeVideoModal;
 document.querySelector('.video-modal-backdrop').onclick = closeVideoModal;
@@ -178,96 +244,141 @@ function handleModalKeyPress(event) {
 
 // Floating preview video logic
 let previewVideo = null;
-let previewOverlay = null; // Keep track of the overlay element
+let previewOverlay = null;
 let previewTimeout = null;
+let currentPreviewAttemptId = 0;
+let previewLoopStart = 0;
+let previewLoopEnd = 0;
+let previewGridItem = null;
+
+// Helper to remove all relevant listeners from previewVideo
+function removePreviewListeners() {
+    if (previewVideo) {
+        // Remove all event listeners by cloning the element
+        const newVideo = previewVideo.cloneNode(true);
+        previewVideo.parentNode.replaceChild(newVideo, previewVideo);
+        previewVideo = newVideo;
+    }
+}
+
+// Function to update preview video position
+function updatePreviewPosition() {
+    if (previewOverlay && previewGridItem) {
+        const rect = previewGridItem.getBoundingClientRect();
+        console.log('Positioning overlay:');
+        console.log('  Grid item rect:', rect);
+        console.log('  Setting overlay to:', {
+            top: rect.top + 'px',
+            left: rect.left + 'px',
+            width: rect.width + 'px',
+            height: rect.height + 'px'
+        });
+        
+        previewOverlay.style.top = rect.top + 'px';
+        previewOverlay.style.left = rect.left + 'px';
+        previewOverlay.style.width = rect.width + 'px';
+        previewOverlay.style.height = rect.height + 'px';
+        
+        console.log('  Overlay after positioning:', {
+            top: previewOverlay.style.top,
+            left: previewOverlay.style.left,
+            width: previewOverlay.style.width,
+            height: previewOverlay.style.height,
+            display: previewOverlay.style.display,
+            zIndex: previewOverlay.style.zIndex,
+            position: previewOverlay.style.position
+        });
+    }
+}
 
 function showPreviewVideo(frame, gridItem) {
-    if (!previewVideo) {
-        previewVideo = document.createElement('video');
-        previewVideo.src = 'media/Memory Maker-compress.mp4';
-        previewVideo.muted = true;
-        previewVideo.playsInline = true;
-        previewVideo.style.position = 'absolute';
-        previewVideo.style.top = '0';
-        previewVideo.style.left = '0';
-        previewVideo.style.width = '100%';
-        previewVideo.style.height = '100%';
-        previewVideo.style.objectFit = 'cover';
-        previewVideo.style.zIndex = '1'; // Lower z-index to be below overlay and text (z-index 2 and 3)
-        previewVideo.style.pointerEvents = 'none';
-        previewVideo.style.borderRadius = 'inherit';
-        // previewVideo.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)'; // Remove box shadow from video itself
-        previewVideo.style.display = 'none';
-
-        previewOverlay = document.createElement('div'); // Create overlay element
-        previewOverlay.className = 'preview-video-overlay';
-        previewOverlay.style.zIndex = '2'; // Below text overlays (z-index 3)
-    }
-
-    // Set segment
-    const singleFrameDuration = getFrameDuration(frame);
-    const start = timecodeToSeconds(frame.startTimecode) + singleFrameDuration;
-     // Calculate end time from start time + duration, then trim two frames
-    let end = timecodeToSeconds(frame.startTimecode) + frame.duration - (2 * singleFrameDuration);
-
-    // Ensure valid range (handle very short frames or calculation inaccuracies)
-    if (end <= start) {
-        // If trimming results in an invalid range, use the original start time + one frame duration
-        end = timecodeToSeconds(frame.startTimecode) + singleFrameDuration; // Keep at least one frame
-        if (end <= start) { // If even one frame is invalid, use original start
-             end = timecodeToSeconds(frame.startTimecode);
-        }
+    console.log('showPreviewVideo called for scene', frame.sceneNumber);
+    
+    // Increment the attempt ID to invalidate any previous attempt
+    currentPreviewAttemptId++;
+    const attemptId = currentPreviewAttemptId;
+    previewGridItem = gridItem;
+    
+    // Clear any existing timeout
+    if (previewTimeout) {
+        clearTimeout(previewTimeout);
+        previewTimeout = null;
     }
     
-    // Remove any existing preview video and overlay from their parents
-    if (previewVideo.parentElement) {
-        previewVideo.parentElement.removeChild(previewVideo);
-    }
-     if (previewOverlay.parentElement) {
-        previewOverlay.parentElement.removeChild(previewOverlay);
-    }
-    
-    // Add video and overlay to grid item
-    gridItem.appendChild(previewVideo);
-    gridItem.appendChild(previewOverlay); // Add overlay after video
-
-    previewVideo.style.display = 'block';
-    previewVideo.currentTime = start;
-    
-    // Start playing
-    previewVideo.play().then(() => {
-        // Clear any existing interval
-        if (previewTimeout) {
-            clearInterval(previewTimeout);
-        }
+    // Add delay before showing preview
+    previewTimeout = setTimeout(() => {
+        console.log('Creating preview overlay for scene', frame.sceneNumber);
         
-        // Set up loop
-        previewTimeout = setInterval(() => {
-            // Add a small buffer and check if almost at the end
-            if (previewVideo.currentTime >= end - 0.1) { // Increased buffer
-                previewVideo.currentTime = start;
-            }
-        }, 100);
-    }).catch(err => {
-        console.error('Error playing preview:', err);
-    });
+        // Check if this attempt is still valid
+        if (attemptId !== currentPreviewAttemptId) return;
+        
+        // Capture the grid item reference before it can be nullified
+        const currentGridItem = gridItem;
+        
+        // Remove any existing preview
+        hidePreviewVideo();
+        
+        // Restore the grid item reference for positioning
+        previewGridItem = currentGridItem;
+        
+        // Create preview overlay
+        previewOverlay = document.createElement('div');
+        previewOverlay.className = 'preview-video-overlay';
+        
+        // Add debug styling and content
+        previewOverlay.style.backgroundColor = 'red';
+        previewOverlay.style.opacity = '1';
+        previewOverlay.style.position = 'fixed';
+        previewOverlay.style.zIndex = '9999';
+        previewOverlay.style.pointerEvents = 'none';
+        previewOverlay.style.display = 'block';
+        previewOverlay.style.border = '5px solid yellow';
+        
+        // Add debug text
+        previewOverlay.innerHTML = `<div style="color: white; font-size: 24px; text-Align: center; padding: 20px;">SCENE ${frame.sceneNumber}</div>`;
+        
+        // Add to document first
+        document.body.appendChild(previewOverlay);
+        console.log('Preview overlay added to document for scene', frame.sceneNumber);
+        console.log('Overlay element:', previewOverlay);
+        console.log('Overlay computed style:', window.getComputedStyle(previewOverlay));
+        
+        // Position overlay over the grid item AFTER adding to DOM
+        console.log('About to position overlay, previewOverlay:', previewOverlay, 'previewGridItem:', previewGridItem);
+        updatePreviewPosition();
+        console.log('Positioning complete');
+        
+        // Add scroll and resize listeners to update position
+        window.addEventListener('scroll', updatePreviewPosition, { passive: true });
+        window.addEventListener('resize', updatePreviewPosition, { passive: true });
+        
+    }, 300); // 300ms delay before showing preview
 }
 
 function hidePreviewVideo() {
+    // Increment attempt ID to invalidate any pending preview
+    currentPreviewAttemptId++;
+    previewGridItem = null;
+    
+    // Clear timeout
+    if (previewTimeout) {
+        clearTimeout(previewTimeout);
+        previewTimeout = null;
+    }
+    
+    // Remove event listeners
+    window.removeEventListener('scroll', updatePreviewPosition);
+    window.removeEventListener('resize', updatePreviewPosition);
+    
+    // Remove preview elements
+    if (previewOverlay) {
+        previewOverlay.remove();
+        previewOverlay = null;
+    }
+    
     if (previewVideo) {
         previewVideo.pause();
-        previewVideo.style.display = 'none';
-        // Remove the video and overlay from their parents
-        if (previewVideo.parentElement) {
-            previewVideo.parentElement.removeChild(previewVideo);
-        }
-         if (previewOverlay.parentElement) {
-            previewOverlay.parentElement.removeChild(previewOverlay);
-        }
-        if (previewTimeout) {
-            clearInterval(previewTimeout);
-            previewTimeout = null;
-        }
+        previewVideo = null;
     }
 }
 
@@ -278,7 +389,7 @@ function createGridItem(frame, index) {
     
     // Use thumbnail for grid view
     const img = document.createElement('img');
-    img.src = frame.thumbnail;
+    img.src = frame.thumbnail.replace(/ /g, '%20'); // Simple space replacement to avoid double-encoding
     img.alt = `Shot at ${frame.startTimecode}`;
     img.loading = 'lazy';
     img.onload = () => {
@@ -321,9 +432,20 @@ function createGridItem(frame, index) {
     // div.setAttribute('data-src', frame.fullImage);
     
     // Add video preview and modal functionality
-    div.addEventListener('mouseenter', () => showPreviewVideo(frame, div));
-    div.addEventListener('mouseleave', hidePreviewVideo);
-    div.addEventListener('click', () => openVideoModal(frame, index)); // Pass index
+    div.addEventListener('mouseenter', () => {
+        console.log('Hover started on scene', frame.sceneNumber);
+        showPreviewVideo(frame, div);
+    });
+    div.addEventListener('mouseleave', () => {
+        console.log('Hover ended');
+        hidePreviewVideo();
+    });
+    div.addEventListener('click', (event) => {
+        console.log('Grid item clicked for scene', frame.sceneNumber);
+        console.log('Click event:', event);
+        event.preventDefault();
+        openVideoModal(frame, index);
+    }); // Pass index
     
     return div;
 }
