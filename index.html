@@ -5,126 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Maker - Portfolio Hub</title>
     <style>
-        * {
+        /* HUB as terminal */
+        body, html {
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            min-height: 100vh;
+            height: 100%;
+            background: #000;
+            font-family: "IBM Plex Mono", monospace;
+            color: #00FF66;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white;
         }
-        
-        .container {
-            text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-        }
-        
+
         h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 5vw;
+            margin: 0 0 12px 0;
+            text-align: center;
         }
-        
+
         .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-        
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .nav-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .nav-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        
-        .nav-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .nav-card p {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 14px;
+            color: #999;
+            text-align: center;
+            margin-bottom: 40px;
             line-height: 1.4;
         }
-        
-        .featured {
-            background: rgba(255, 215, 0, 0.2);
-            border-color: rgba(255, 215, 0, 0.4);
+
+        .signature {
+            margin-top: 32px;
+            font-style: italic;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* terminal lines */
+        .terminal { 
+            width: 480px; 
+            max-width: 90vw; 
         }
         
-        .featured:hover {
-            background: rgba(255, 215, 0, 0.3);
+        .cmd {
+            font-size: 18px;
+            color: #008844;
+            cursor: pointer;
+            transition: transform .2s, color .2s;
+            margin-bottom: 8px;
+            text-decoration: none;
+            display: block;
         }
         
+        .cmd:hover,
+        .cmd:focus {
+            color: #00FF66;
+            transform: translateX(6px);
+        }
+
+        /* prompt */
+        .input { 
+            margin-top: 24px; 
+            display: flex; 
+            gap: 4px; 
+            font-size: 18px; 
+        }
+        
+        .input span { 
+            color: #00FF66; 
+        }
+        
+        .input input {
+            flex: 1;
+            background: #000;
+            border: none;
+            color: #00FF66;
+            outline: none;
+            caret-color: #00FF66;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 18px;
+        }
+
         @media (max-width: 600px) {
             h1 {
-                font-size: 2rem;
+                font-size: 8vw;
             }
             
-            .nav-grid {
-                grid-template-columns: 1fr;
+            .cmd, .input {
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>MEMORY MAKER</h1>
-        <p class="subtitle">Portfolio & Project Hub</p>
+        <h1>AI-filmskaping for den virkelige verden</h1>
+        <p class="subtitle">eller<br>Hvorfor bare lage en presentasjon når du kan drite deg ut ved å prøve å vibekode den to dager i forveien og knapt sove fordi alt så så til helvete?</p>
         
-        <div class="nav-grid">
-            <a href="intro.html" class="nav-card">
-                <h3>Intro</h3>
-                <p>Welcome and introduction to the project</p>
+        <div class="terminal">
+            <a href="intro.html" class="cmd" id="intro" onclick="goto('intro')">
+                > intro.exe
             </a>
             
-            <a href="syver/index.html" class="nav-card">
-                <h3>Syver</h3>
-                <p>Explore the Syver collection</p>
+            <a href="syver/index.html" class="cmd" id="syver" onclick="goto('syver')">
+                > syver.exe
             </a>
             
-            <a href="workflow.html" class="nav-card">
-                <h3>Workflow</h3>
-                <p>Behind the scenes process and methodology</p>
+            <a href="workflow.html" class="cmd" id="workflow" onclick="goto('workflow')">
+                > workflow.exe
             </a>
             
-            <a href="memorymaker.html" class="nav-card featured">
-                <h3>Memory Maker</h3>
-                <p>Interactive shot breakdown and visual storytelling</p>
+            <a href="memorymaker.html" class="cmd" id="memorymaker" onclick="goto('memorymaker')">
+                > memorymaker.exe
             </a>
             
-            <a href="outro.html" class="nav-card">
-                <h3>Outro</h3>
-                <p>Conclusion and final thoughts</p>
+            <a href="outro.html" class="cmd" id="outro" onclick="goto('outro')">
+                > outro.exe
             </a>
+            
+            <div class="input">
+                <span>></span>
+                <input type="text" placeholder="type command and press enter">
+            </div>
         </div>
+        
+        <p class="signature">Av Syver Lauritz</p>
     </div>
+
+    <script>
+        // Module definitions for command input
+        const modules = [
+            { id: 'intro', label: 'intro.exe', url: 'intro.html' },
+            { id: 'syver', label: 'syver.exe', url: 'syver/index.html' },
+            { id: 'workflow', label: 'workflow.exe', url: 'workflow.html' },
+            { id: 'memorymaker', label: 'memorymaker.exe', url: 'memorymaker.html' },
+            { id: 'outro', label: 'outro.exe', url: 'outro.html' }
+        ];
+
+        // Navigation function (preserves existing functionality)
+        function goto(id) {
+            const module = modules.find(m => m.id === id);
+            if (module) {
+                window.location.href = module.url;
+            }
+        }
+
+        // Command input functionality
+        document.querySelector(".input input").addEventListener("keydown", e => {
+            if (e.key !== "Enter") return;
+            const val = e.target.value.trim().toLowerCase().replace(".exe", "");
+            const hit = modules.find(m => m.id === val || m.label.toLowerCase() === `${val}.exe`);
+            if (hit) { 
+                goto(hit.id); 
+                e.target.value = ""; 
+            } else {
+                flashError(e.target);
+            }
+        });
+
+        function flashError(el) {
+            el.style.color = "#FF3333";
+            setTimeout(() => el.style.color = "#00FF66", 400);
+        }
+    </script>
 </body>
 </html> 
