@@ -3,44 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Maker - Shot Breakdown</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Fancybox for lightbox functionality -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+    <title>Memory Maker - Portfolio Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .nav-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .featured {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+        
+        .featured:hover {
+            background: rgba(255, 215, 0, 0.3);
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <div class="container">
         <h1>MEMORY MAKER</h1>
-        <h2>SHOT BREAKDOWN</h2>
-    </header>
-    
-    <main class="grid">
-        <!-- Grid will be populated by JavaScript -->
-    </main>
-
-    <div id="video-modal" class="video-modal" style="display:none;">
-        <div class="video-modal-backdrop"></div>
-        <div class="video-modal-content">
-            <button id="close-video-modal" class="video-modal-close">&times;</button>
-            <div class="modal-content-wrapper">
-            <video id="scene-video" width="800" controls preload="auto" muted>
-                <source src="media/memory-maker.webm" type="video/webm">
-                <source src="media/memory-maker.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div id="additional-content" class="additional-content">
-                <!-- Additional content (text, images, videos) will be loaded here -->
-            </div>
-            </div>
-            <div class="modal-navigation">
-                <button class="nav-arrow" id="prev-shot">&lt;</button>
-                <span class="close-text" id="modal-close-text">CLOSE</span>
-                <button class="nav-arrow" id="next-shot">&gt;</button>
-            </div>
+        <p class="subtitle">Portfolio & Project Hub</p>
+        
+        <div class="nav-grid">
+            <a href="intro.html" class="nav-card">
+                <h3>Intro</h3>
+                <p>Welcome and introduction to the project</p>
+            </a>
+            
+            <a href="syver/index.html" class="nav-card">
+                <h3>Syver</h3>
+                <p>Explore the Syver collection</p>
+            </a>
+            
+            <a href="workflow.html" class="nav-card">
+                <h3>Workflow</h3>
+                <p>Behind the scenes process and methodology</p>
+            </a>
+            
+            <a href="memorymaker.html" class="nav-card featured">
+                <h3>Memory Maker</h3>
+                <p>Interactive shot breakdown and visual storytelling</p>
+            </a>
+            
+            <a href="outro.html" class="nav-card">
+                <h3>Outro</h3>
+                <p>Conclusion and final thoughts</p>
+            </a>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script src="script.js"></script>
 </body>
 </html> 
