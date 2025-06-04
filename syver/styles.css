@@ -247,19 +247,30 @@ p {
 
 .video-wrapper {
     position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
     overflow: hidden;
-    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.supercut-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #000;
+    border-radius: 20px;
+}
+
+.video-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(255, 51, 102, 0.2);
 }
 
 .video-thumbnail {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
 }
 
 .video-overlay {
