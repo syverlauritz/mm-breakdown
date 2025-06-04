@@ -6,7 +6,7 @@
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background: #000;
+    background: #0b0b0b;
     color: #fff;
     line-height: 1.6;
 }
@@ -33,7 +33,7 @@ h2 {
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 50px 34px; /* 50px vertical gap, 34px horizontal gap (doubled from 17px) */
+    gap: 140px 60px; /* 140px vertical gap (doubled from 70px), 100px horizontal gap (doubled from 50px) */
     padding: 3rem; /* Add padding from browser window */
     width: 100%;
     box-sizing: border-box;

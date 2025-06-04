@@ -1388,10 +1388,36 @@
       "content": {
         "title": "",
         "description": "",
-        "additionalImages": [],
-        "videoClips": [],
-        "notes": "",
-        "orderedContent": []
+        "additionalImages": [
+          "media\\016-03.png"
+        ],
+        "videoClips": [
+          "media\\016-02.mp4",
+          "media\\016-05.mp4"
+        ],
+        "notes": "The memory sequences were made in two steps.\r\n\r\n1. Careful manual animation of clips to make them flow between one another smoothly.\r\n\r\n2. A custom filter built in TouchDesigner that analyzes the motion vectors of the video, and uses them to displace the video even further, resulting in a dreamy, smoke-like expression.",
+        "orderedContent": [
+          {
+            "type": "text",
+            "content": "The memory sequences were made in two steps.\r\n\r\n1. Careful manual animation of clips to make them flow between one another smoothly.\r\n\r\n2. A custom filter built in TouchDesigner that analyzes the motion vectors of the video, and uses them to displace the video even further, resulting in a dreamy, smoke-like expression.",
+            "filename": "016-01.txt"
+          },
+          {
+            "type": "video",
+            "src": "media\\016-02.mp4",
+            "filename": "016-02.mp4"
+          },
+          {
+            "type": "image",
+            "src": "media\\016-03.png",
+            "filename": "016-03.png"
+          },
+          {
+            "type": "video",
+            "src": "media\\016-05.mp4",
+            "filename": "016-05.mp4"
+          }
+        ]
       }
     },
     {
@@ -1406,10 +1432,36 @@
       "content": {
         "title": "",
         "description": "",
-        "additionalImages": [],
-        "videoClips": [],
-        "notes": "",
-        "orderedContent": []
+        "additionalImages": [
+          "media\\016-03.png"
+        ],
+        "videoClips": [
+          "media\\016-02.mp4",
+          "media\\016-05.mp4"
+        ],
+        "notes": "The memory sequences were made in two steps.\r\n\r\n1. Careful manual animation of clips to make them flow between one another smoothly.\r\n\r\n2. A custom filter built in TouchDesigner that analyzes the motion vectors of the video, and uses them to displace the video even further, resulting in a dreamy, smoke-like expression.",
+        "orderedContent": [
+          {
+            "type": "text",
+            "content": "The memory sequences were made in two steps.\r\n\r\n1. Careful manual animation of clips to make them flow between one another smoothly.\r\n\r\n2. A custom filter built in TouchDesigner that analyzes the motion vectors of the video, and uses them to displace the video even further, resulting in a dreamy, smoke-like expression.",
+            "filename": "016-01.txt"
+          },
+          {
+            "type": "video",
+            "src": "media\\016-02.mp4",
+            "filename": "016-02.mp4"
+          },
+          {
+            "type": "image",
+            "src": "media\\016-03.png",
+            "filename": "016-03.png"
+          },
+          {
+            "type": "video",
+            "src": "media\\016-05.mp4",
+            "filename": "016-05.mp4"
+          }
+        ]
       }
     },
     {
@@ -1424,10 +1476,36 @@
       "content": {
         "title": "",
         "description": "",
-        "additionalImages": [],
-        "videoClips": [],
-        "notes": "",
-        "orderedContent": []
+        "additionalImages": [
+          "media\\016-03.png"
+        ],
+        "videoClips": [
+          "media\\016-02.mp4",
+          "media\\016-05.mp4"
+        ],
+        "notes": "The memory sequences were made in two steps.\r\n\r\n1. Careful manual animation of clips to make them flow between one another smoothly.\r\n\r\n2. A custom filter built in TouchDesigner that analyzes the motion vectors of the video, and uses them to displace the video even further, resulting in a dreamy, smoke-like expression.",
+        "orderedContent": [
+          {
+            "type": "text",
+            "content": "The memory sequences were made in two steps.\r\n\r\n1. Careful manual animation of clips to make them flow between one another smoothly.\r\n\r\n2. A custom filter built in TouchDesigner that analyzes the motion vectors of the video, and uses them to displace the video even further, resulting in a dreamy, smoke-like expression.",
+            "filename": "016-01.txt"
+          },
+          {
+            "type": "video",
+            "src": "media\\016-02.mp4",
+            "filename": "016-02.mp4"
+          },
+          {
+            "type": "image",
+            "src": "media\\016-03.png",
+            "filename": "016-03.png"
+          },
+          {
+            "type": "video",
+            "src": "media\\016-05.mp4",
+            "filename": "016-05.mp4"
+          }
+        ]
       }
     },
     {
