@@ -458,17 +458,64 @@ function createGridItem(frame, index) {
         (frame.content.videoClips && frame.content.videoClips.length > 0)
     );
 
-    let specialContentDiv = null;
-    if (hasSpecialContent) {
-        specialContentDiv = document.createElement('div');
-        specialContentDiv.className = 'special-content-indicator-below';
-        specialContentDiv.textContent = '*'; // Use asterisk character
+    // Check for specific content types
+    const hasImages = frame.content && frame.content.additionalImages && frame.content.additionalImages.length > 0;
+    const hasVideos = frame.content && frame.content.videoClips && frame.content.videoClips.length > 0;
+    const hasOtherContent = frame.content && (
+        (frame.content.title && frame.content.title.trim() !== '') ||
+        (frame.content.description && frame.content.description.trim() !== '') ||
+        (frame.content.notes && frame.content.notes.trim() !== '')
+    );
+
+    // Create the icons container
+    let iconsContainer = null;
+    if (hasImages || hasVideos || hasOtherContent) {
+        iconsContainer = document.createElement('div');
+        iconsContainer.className = 'content-icons-container';
+        
+        // Create three fixed spots for icons
+        // Spot 1: Solid square (images)
+        const solidSpot = document.createElement('div');
+        solidSpot.className = 'icon-spot solid-spot';
+        if (hasImages) {
+            const solidIcon = document.createElement('img');
+            solidIcon.src = 'assets/solidsquare.svg';
+            solidIcon.alt = 'Images';
+            solidIcon.className = 'content-icon';
+            solidSpot.appendChild(solidIcon);
+        }
+        
+        // Spot 2: Stroke square (videos)
+        const strokeSpot = document.createElement('div');
+        strokeSpot.className = 'icon-spot stroke-spot';
+        if (hasVideos) {
+            const strokeIcon = document.createElement('img');
+            strokeIcon.src = 'assets/strokesquare.svg';
+            strokeIcon.alt = 'Videos';
+            strokeIcon.className = 'content-icon';
+            strokeSpot.appendChild(strokeIcon);
+        }
+        
+        // Spot 3: Asterisk (other content)
+        const asteriskSpot = document.createElement('div');
+        asteriskSpot.className = 'icon-spot asterisk-spot';
+        if (hasOtherContent) {
+            const asteriskIcon = document.createElement('img');
+            asteriskIcon.src = 'assets/asterisk.svg';
+            asteriskIcon.alt = 'Special content';
+            asteriskIcon.className = 'content-icon';
+            asteriskSpot.appendChild(asteriskIcon);
+        }
+        
+        iconsContainer.appendChild(solidSpot);
+        iconsContainer.appendChild(strokeSpot);
+        iconsContainer.appendChild(asteriskSpot);
     }
     
     // Add elements to info div
     infoDiv.appendChild(shotNumberDiv);
-    if (specialContentDiv) {
-        infoDiv.appendChild(specialContentDiv);
+    if (iconsContainer) {
+        infoDiv.appendChild(iconsContainer);
     }
     
     // Add everything to container

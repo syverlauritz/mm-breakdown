@@ -33,14 +33,20 @@ h2 {
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 50px 17px; /* 50px vertical gap, 17px horizontal gap (1/3 of vertical) */
-    padding: 0;
+    gap: 50px 34px; /* 50px vertical gap, 34px horizontal gap (doubled from 17px) */
+    padding: 3rem; /* Add padding from browser window */
     width: 100%;
+    box-sizing: border-box;
 }
 
 .grid-item-container {
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease; /* Smooth transition for scale effect */
+}
+
+.grid-item-container:hover {
+    transform: scale(1.05); /* Scale up on hover */
 }
 
 .grid-item {
@@ -54,9 +60,10 @@ h2 {
 .grid-item-info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     margin-top: 8px;
     padding: 0 2px;
+    min-height: 1.5rem;
 }
 
 .frame-number-below {
@@ -65,13 +72,22 @@ h2 {
     color: #fff;
     letter-spacing: 0.1em;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    line-height: 1.5rem;
 }
 
 .special-content-indicator-below {
     color: #fff;
-    font-size: 1.5rem;
-    font-weight: bold;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    line-height: 1.5rem;
+    display: flex;
+    align-items: center;
+    height: 1.5rem; /* Match the line height */
+}
+
+.asterisk-icon {
+    width: 0.9rem; /* Match the font size of frame number */
+    height: 0.9rem;
+    filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.5)); /* Replace text-shadow with filter for SVG */
 }
 
 .grid-item::before {
@@ -420,4 +436,25 @@ body.modal-open {
 
 .modal-content-wrapper::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.5);
+}
+
+.content-icons-container {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Small gap between icon spots */
+    height: 1.5rem; /* Match the line height */
+}
+
+.icon-spot {
+    width: 0.9rem; /* Fixed width for each spot */
+    height: 0.9rem; /* Fixed height for each spot */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-icon {
+    width: 0.9rem; /* Match the font size of frame number */
+    height: 0.9rem;
+    filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.5)); /* Shadow effect for all icons */
 } 

@@ -154,7 +154,7 @@
           "media\\009-05.png"
         ],
         "videoClips": [],
-        "notes": "The lion and robot were inpainted on an appropriately lit carpet using Midjourney. Alludes to Wittgenstein's famous quote, \"If a lion could speak, we could not understand him,\" which highlights the limitations of language and understanding. \r\n\r\nIt suggests that even if a lion could use human language, its meaning and experience would be so different from ours that we couldn't truly grasp its perspective. \r\n\r\nThe core idea is that understanding goes beyond simply knowing the words and syntax; it involves sharing a similar \"form of life\" and understanding the underlying meaning and context. Which is very relevant to the story here.\nThe lion and robot were inpainted on an appropriately lit carpet using Midjourney. Alludes to Wittgenstein's famous quote, \"If a lion could speak, we could not understand him,\" which highlights the limitations of language and understanding. \r\n\r\nIt suggests that even if a lion could use human language, its meaning and experience would be so different from ours that we couldn't truly grasp its perspective. \r\n\r\nThe core idea is that understanding goes beyond simply knowing the words and syntax; it involves sharing a similar \"form of life\" and understanding the underlying meaning and context. Which is very relevant to the story here."
+        "notes": "The lion and robot were inpainted on an appropriately lit carpet using Midjourney. Alludes to Wittgenstein's famous quote, \"If a lion could speak, we could not understand him,\" which highlights the limitations of language and understanding. \r\n\r\nIt suggests that even if a lion could use human language, its meaning and experience would be so different from ours that we couldn't truly grasp its perspective. \r\n\r\nThe core idea is that understanding goes beyond simply knowing the words and syntax; it involves sharing a similar \"form of life\" and understanding the underlying meaning and context. Which is very relevant to the story here.\nThe lion and robot were inpainted on an appropriately lit carpet using Midjourney. Alludes to Wittgenstein's famous quote, \"If a lion could speak, we could not understand him,\" which highlights the limitations of language and understanding. \r\n\r\nIt suggests that even if a lion could use human language, its meaning and experience would be so different from ours that we couldn't truly grasp its perspective. \r\n\r\nThe core idea is that understanding goes beyond simply knowing the words and syntax; it involves sharing a similar \"form of life\" and understanding the underlying meaning and context. Which is very relevant to the story here.\nThe lion and robot were inpainted on an appropriately lit carpet using Midjourney. Alludes to Wittgenstein's famous quote, \"If a lion could speak, we could not understand him,\" which highlights the limitations of language and understanding. \r\n\r\nIt suggests that even if a lion could use human language, its meaning and experience would be so different from ours that we couldn't truly grasp its perspective. \r\n\r\nThe core idea is that understanding goes beyond simply knowing the words and syntax; it involves sharing a similar \"form of life\" and understanding the underlying meaning and context. Which is very relevant to the story here."
       }
     },
     {
@@ -187,8 +187,10 @@
         "title": "",
         "description": "",
         "additionalImages": [],
-        "videoClips": [],
-        "notes": ""
+        "videoClips": [
+          "media\\011-02.mp4"
+        ],
+        "notes": "Whoooooole lotta photoshopping - both generative fill for the device and goatee, as well as a bunch of adjustments for colour matching."
       }
     },
     {
@@ -237,9 +239,11 @@
       "content": {
         "title": "",
         "description": "",
-        "additionalImages": [],
+        "additionalImages": [
+          "media\\014-02.png"
+        ],
         "videoClips": [],
-        "notes": ""
+        "notes": "Memory Video tracked and comped onto camera dolly in footage."
       }
     },
     {
@@ -374,8 +378,10 @@
         "title": "",
         "description": "",
         "additionalImages": [],
-        "videoClips": [],
-        "notes": ""
+        "videoClips": [
+          "media\\022-02.mp4"
+        ],
+        "notes": "The client wanted a bit of dust kickup from the hover car. I prompted a video overlay using T2V in Hailuo, tracked and comped in After Effects."
       }
     },
     {
@@ -465,7 +471,7 @@
           "media\\027-05.png"
         ],
         "videoClips": [],
-        "notes": "Original image from Midjourney. To match the government vehicle, I literally drew it in using the brush tool in photoshop, then ran it through img 2 img at tensor.art.\r\n\r\nKling refused to give it speed until I gave the still image some motion blur."
+        "notes": "Original image from Midjourney. To match the government vehicle, I literally drew it in using the brush tool in photoshop, then ran it through img 2 img at tensor.art.\r\n\r\nKling refused to give it speed until I gave the still image some motion blur.\nOriginal image from Midjourney. To match the government vehicle, I literally drew it in using the brush tool in photoshop, then ran it through img 2 img at tensor.art.\r\n\r\nKling refused to give it speed until I gave the still image some motion blur."
       }
     },
     {
@@ -690,7 +696,7 @@
           "media\\040-04.mp4",
           "media\\040-05.mp4"
         ],
-        "notes": "Without a doubt one of the more challenging scenes, both in terms of designing the room, getting the right still, and the final animation.\r\n\r\nAs is often the case with shots from further away, her face had to be carefully tracked and comped onto her body in order to preserve her likeness."
+        "notes": "Without a doubt one of the more challenging scenes, both in terms of designing the room, getting the right still, and the final animation.\r\n\r\nAs is often the case with shots from further away, her face had to be carefully tracked and comped onto her body in order to preserve her likeness.\nWithout a doubt one of the more challenging scenes, both in terms of designing the room, getting the right still, and the final animation.\r\n\r\nAs is often the case with shots from further away, her face had to be carefully tracked and comped onto her body in order to preserve her likeness."
       }
     },
     {
