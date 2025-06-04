@@ -33,6 +33,9 @@ const server = http.createServer((req, res) => {
         pathname = '/index.html';
     }
     
+    // URL decode the pathname to handle encoded characters like spaces
+    pathname = decodeURIComponent(pathname);
+    
     // Get the full file path
     const filePath = path.join(__dirname, pathname);
     

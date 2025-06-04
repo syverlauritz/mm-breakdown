@@ -247,9 +247,9 @@ let previewVideo = null;
 let previewOverlay = null;
 let previewTimeout = null;
 let currentPreviewAttemptId = 0;
+let previewGridItem = null;
 let previewLoopStart = 0;
 let previewLoopEnd = 0;
-let previewGridItem = null;
 
 // Helper to remove all relevant listeners from previewVideo
 function removePreviewListeners() {
@@ -324,29 +324,59 @@ function showPreviewVideo(frame, gridItem) {
         // Create preview overlay
         previewOverlay = document.createElement('div');
         previewOverlay.className = 'preview-video-overlay';
-        
-        // Add debug styling and content
-        previewOverlay.style.backgroundColor = 'red';
-        previewOverlay.style.opacity = '1';
         previewOverlay.style.position = 'fixed';
         previewOverlay.style.zIndex = '9999';
         previewOverlay.style.pointerEvents = 'none';
         previewOverlay.style.display = 'block';
-        previewOverlay.style.border = '5px solid yellow';
+        previewOverlay.style.borderRadius = '4px';
+        previewOverlay.style.overflow = 'hidden';
         
-        // Add debug text
-        previewOverlay.innerHTML = `<div style="color: white; font-size: 24px; text-Align: center; padding: 20px;">SCENE ${frame.sceneNumber}</div>`;
+        // Create video element for preview
+        previewVideo = document.createElement('video');
+        previewVideo.src = 'media/memory-maker.mp4'; // Use the main video file
+        previewVideo.muted = true;
+        previewVideo.loop = false; // We'll handle looping manually
+        previewVideo.style.width = '100%';
+        previewVideo.style.height = '100%';
+        previewVideo.style.objectFit = 'cover';
+        
+        // Calculate scene timing
+        const singleFrameDuration = getFrameDuration(frame);
+        const loopStart = timecodeToSeconds(frame.startTimecode) + singleFrameDuration;
+        let loopEnd = timecodeToSeconds(frame.startTimecode) + frame.duration - singleFrameDuration;
+        
+        // Ensure valid range
+        if (loopEnd <= loopStart) {
+            previewLoopStart = timecodeToSeconds(frame.startTimecode);
+            previewLoopEnd = timecodeToSeconds(frame.endTimecode);
+        } else {
+            previewLoopStart = loopStart;
+            previewLoopEnd = loopEnd;
+        }
+        
+        // Add video to overlay
+        previewOverlay.appendChild(previewVideo);
         
         // Add to document first
         document.body.appendChild(previewOverlay);
-        console.log('Preview overlay added to document for scene', frame.sceneNumber);
-        console.log('Overlay element:', previewOverlay);
-        console.log('Overlay computed style:', window.getComputedStyle(previewOverlay));
         
         // Position overlay over the grid item AFTER adding to DOM
-        console.log('About to position overlay, previewOverlay:', previewOverlay, 'previewGridItem:', previewGridItem);
         updatePreviewPosition();
-        console.log('Positioning complete');
+        
+        // Set up video playback
+        previewVideo.addEventListener('loadedmetadata', () => {
+            previewVideo.currentTime = previewLoopStart;
+            previewVideo.play().catch(error => {
+                console.log('Preview video play failed (this is normal):', error);
+            });
+        });
+        
+        // Handle looping
+        previewVideo.addEventListener('timeupdate', () => {
+            if (previewVideo.currentTime >= previewLoopEnd - 0.1) {
+                previewVideo.currentTime = previewLoopStart;
+            }
+        });
         
         // Add scroll and resize listeners to update position
         window.addEventListener('scroll', updatePreviewPosition, { passive: true });
@@ -384,6 +414,11 @@ function hidePreviewVideo() {
 
 // Function to create grid items
 function createGridItem(frame, index) {
+    // Create container for the whole item
+    const container = document.createElement('div');
+    container.className = 'grid-item-container';
+    
+    // Create the actual grid item (image)
     const div = document.createElement('div');
     div.className = 'grid-item';
     
@@ -395,23 +430,26 @@ function createGridItem(frame, index) {
     img.onload = () => {
         div.classList.add('loaded');
     };
-    
-    // Shot number in bottom left
-    const shotNumberDiv = document.createElement('div');
-    shotNumberDiv.className = 'frame-number'; // Reusing frame-number class for styling
-    // Format sceneNumber to three digits
-    shotNumberDiv.textContent = frame.sceneNumber.toString().padStart(3, '0'); 
 
-    // Timecode in top left
+    // Timecode in top left (stays inside the frame)
     const timecodeDiv = document.createElement('div');
     timecodeDiv.className = 'timecode';
     timecodeDiv.textContent = formatTimecodeMMSS(frame.startTimecode);
     
     div.appendChild(img);
-    div.appendChild(shotNumberDiv); // Add shot number
     div.appendChild(timecodeDiv);
     
-    // Add special content indicator if content exists
+    // Create info section below the frame
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'grid-item-info';
+    
+    // Shot number in bottom left (now below the frame)
+    const shotNumberDiv = document.createElement('div');
+    shotNumberDiv.className = 'frame-number-below';
+    // Format sceneNumber to three digits
+    shotNumberDiv.textContent = frame.sceneNumber.toString().padStart(3, '0'); 
+    
+    // Add special content indicator if content exists (now below the frame)
     const hasSpecialContent = frame.content && (
         (frame.content.title && frame.content.title.trim() !== '') ||
         (frame.content.description && frame.content.description.trim() !== '') ||
@@ -420,18 +458,24 @@ function createGridItem(frame, index) {
         (frame.content.videoClips && frame.content.videoClips.length > 0)
     );
 
+    let specialContentDiv = null;
     if (hasSpecialContent) {
-        const indicatorDiv = document.createElement('div'); // Use div for font character
-        indicatorDiv.className = 'special-content-indicator';
-        indicatorDiv.textContent = '*'; // Use asterisk character
-        div.appendChild(indicatorDiv);
+        specialContentDiv = document.createElement('div');
+        specialContentDiv.className = 'special-content-indicator-below';
+        specialContentDiv.textContent = '*'; // Use asterisk character
     }
-
-    // Remove Fancybox data attributes
-    // div.setAttribute('data-fancybox', 'gallery');
-    // div.setAttribute('data-src', frame.fullImage);
     
-    // Add video preview and modal functionality
+    // Add elements to info div
+    infoDiv.appendChild(shotNumberDiv);
+    if (specialContentDiv) {
+        infoDiv.appendChild(specialContentDiv);
+    }
+    
+    // Add everything to container
+    container.appendChild(div);
+    container.appendChild(infoDiv);
+
+    // Add video preview and modal functionality to the grid item (not container)
     div.addEventListener('mouseenter', () => {
         console.log('Hover started on scene', frame.sceneNumber);
         showPreviewVideo(frame, div);
@@ -447,7 +491,7 @@ function createGridItem(frame, index) {
         openVideoModal(frame, index);
     }); // Pass index
     
-    return div;
+    return container;
 }
 
 // Function to populate the grid

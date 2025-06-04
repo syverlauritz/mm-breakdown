@@ -33,9 +33,14 @@ h2 {
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 50px 0; /* 50px vertical gap, 0 horizontal gap */
+    gap: 50px 17px; /* 50px vertical gap, 17px horizontal gap (1/3 of vertical) */
     padding: 0;
     width: 100%;
+}
+
+.grid-item-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .grid-item {
@@ -44,6 +49,29 @@ h2 {
     overflow: hidden;
     cursor: pointer;
     background: #1a1a1a; /* Dark placeholder background */
+}
+
+.grid-item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding: 0 2px;
+}
+
+.frame-number-below {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.special-content-indicator-below {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .grid-item::before {
@@ -120,24 +148,7 @@ h2 {
     background: rgba(0,0,0,0.35);
 }
 
-/* Frame number in bottom left corner */
-.frame-number {
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
-    right: auto;
-    background: none;
-    padding: 5px;
-    border-radius: 0;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #fff;
-    letter-spacing: 0.1em;
-    pointer-events: none;
-    z-index: 3;
-    opacity: 1;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-}
+/* Frame number in bottom left corner - REMOVED, now below frames */
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -311,18 +322,7 @@ body.modal-open {
     margin-bottom: 0;
 }
 
-/* Style for the special content indicator */
-.special-content-indicator {
-    position: absolute;
-    top: 0px;
-    right: 5px;
-    pointer-events: none;
-    z-index: 4;
-    color: #fff;
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-}
+/* Style for the special content indicator - REMOVED, now below frames */
 
 /* Navigation for the modal */
 .modal-navigation {
@@ -362,10 +362,8 @@ body.modal-open {
     color: #ff4444;
 }
 
-/* Ensure timecode and frame number stay visible on hover */
-.grid-item .timecode,
-.grid-item .frame-number,
-.grid-item .special-content-indicator {
+/* Ensure timecode stays visible on hover */
+.grid-item .timecode {
     z-index: 4;
 }
 
@@ -374,11 +372,7 @@ body.modal-open {
     position: fixed;
     pointer-events: none;
     z-index: 9999;
-    border: 5px solid yellow;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    /* Make it completely solid red for debugging */
-    background: red !important;
     /* Match grid item aspect ratio */
     aspect-ratio: 16/9;
     opacity: 1 !important;
