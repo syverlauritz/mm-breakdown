@@ -9,16 +9,21 @@
         
         body {
             font-family: "Tahoma", "MS Sans Serif", sans-serif;
-            font-size: 11px;
+            font-size: 22px;
             background: linear-gradient(45deg, #5a9fd4 0%, #306998 100%);
             height: 100vh;
             overflow: hidden;
             cursor: default;
             user-select: none;
+            transform-origin: top left;
+            transform: scale(2);
+            width: 50vw;
+            height: 50vh;
         }
 
         .desktop { 
-            height: 100vh; 
+            height: 50vh; 
+            width: 50vw;
             position: relative;
             background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" fill="%23306998"/><rect width="1" height="1" x="0" y="0" fill="%235a9fd4" opacity="0.1"/></svg>');
         }
@@ -55,14 +60,17 @@
             position: absolute; 
             background: linear-gradient(to bottom, #ece9d8 0%, #d6d3ce 100%);
             border: 2px outset #d6d3ce;
-            min-width: 400px; min-height: 300px; display: none;
+            min-width: 200px; min-height: 100px; display: none;
             box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
             border-radius: 1px;
+            width: auto;
+            height: auto;
         }
 
         .window.active { display: block; }
 
         .window.frozen {
+            display: block !important;
             opacity: 0.7;
             pointer-events: none;
         }
@@ -111,7 +119,7 @@
         }
 
         .window-content {
-            padding: 12px; height: calc(100% - 20px); 
+            padding: 12px; 
             background: #ece9d8; display: flex; flex-direction: column;
         }
 
@@ -120,14 +128,35 @@
         }
 
         .image-container {
-            flex: 1; display: flex; justify-content: center; align-items: center;
+            display: flex; justify-content: center; align-items: center;
             border: 2px inset #d6d3ce; background: #ffffff;
-            min-height: 250px; overflow: hidden;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+            padding: 10px;
+        }
+
+        .image-container:active {
+            cursor: grabbing;
         }
 
         .error-image {
-            max-width: 100%; max-height: 100%;
+            max-width: 35vw; max-height: 35vh;
             object-fit: contain; display: block;
+            transition: transform 0.1s ease;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .error-image:active {
+            cursor: grabbing;
+        }
+
+        .error-video {
+            max-width: 35vw; max-height: 35vh;
+            object-fit: contain; display: block;
+            transition: transform 0.1s ease;
+            user-select: none;
         }
 
         .shutdown-screen {
@@ -135,8 +164,10 @@
             background: #000; color: #FF8000; display: none;
             flex-direction: column; align-items: center; justify-content: center;
             font-family: "MS Sans Serif", monospace, sans-serif;
-            font-size: 18px; font-weight: bold; z-index: 2000; cursor: pointer;
+            font-size: 32px; font-weight: bold; z-index: 2000; cursor: pointer;
             text-align: center; line-height: 1.6;
+            transform-origin: top left;
+            transform: scale(0.5);
         }
 
         .resize-handle { position: absolute; background: transparent; }
@@ -151,7 +182,7 @@
         /* Windows 98 style desktop icons */
         .desktop-icon {
             position: absolute;
-            width: 72px; height: 64px; top: 20px; left: 20px;
+            width: 72px; height: 64px; top: 10px; left: 10px;
             display: flex; flex-direction: column; align-items: center;
             color: white; font-size: 9px; text-align: center;
             cursor: pointer; padding: 4px;
@@ -166,19 +197,31 @@
         .icon-img {
             width: 32px; height: 32px; margin-bottom: 4px;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="18" fill="%23c0c0c0" stroke="%23808080"/><rect x="6" y="8" width="20" height="14" fill="%23008080"/><rect x="2" y="4" width="4" height="2" fill="%23c0c0c0"/><rect x="26" y="4" width="4" height="2" fill="%23c0c0c0"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+
+        .jpg-icon {
+            width: 32px; height: 32px; margin-bottom: 4px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="2" y="4" width="28" height="24" fill="%23ffffff" stroke="%23000"/><rect x="4" y="6" width="24" height="18" fill="%23ffddaa"/><circle cx="10" cy="12" r="2" fill="%23ffaa00"/><polygon points="4,20 12,14 16,16 20,12 28,18 28,22 4,22" fill="%2300aa00"/></svg>') no-repeat center;
+            background-size: contain;
         }
     </style>
 </head>
 <body>
     <div class="desktop">
-        <!-- Desktop Icon -->
+        <!-- Desktop Icons -->
         <div class="desktop-icon">
             <div class="icon-img"></div>
             <div>My Computer</div>
         </div>
 
+        <div class="desktop-icon" style="top: 80px; left: 10px;" onclick="openWindow(0)">
+            <div class="jpg-icon"></div>
+            <div>idiot.jpg</div>
+        </div>
+
         <!-- Error Windows -->
-        <div class="window active" id="window-0" style="top: 80px; left: 100px; width: 450px; height: 500px;">
+        <div class="window" id="window-0" style="top: 20px; left: 40px;">
             <div class="titlebar">
                 <div class="window-title">Application Error</div>
                 <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(0)">×</div>
@@ -194,7 +237,7 @@
             <div class="resize-handle e"></div>
         </div>
 
-        <div class="window" id="window-1" style="top: 120px; left: 150px; width: 450px; height: 500px;">
+        <div class="window" id="window-1" style="top: 25px; left: 60px;">
             <div class="titlebar">
                 <div class="window-title">System Error</div>
                 <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(1)">×</div>
@@ -210,7 +253,7 @@
             <div class="resize-handle e"></div>
         </div>
 
-        <div class="window" id="window-2" style="top: 160px; left: 200px; width: 450px; height: 500px;">
+        <div class="window" id="window-2" style="top: 30px; left: 80px;">
             <div class="titlebar">
                 <div class="window-title">Memory Error</div>
                 <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(2)">×</div>
@@ -226,7 +269,7 @@
             <div class="resize-handle e"></div>
         </div>
 
-        <div class="window" id="window-3" style="top: 100px; left: 250px; width: 450px; height: 500px;">
+        <div class="window" id="window-3" style="top: 35px; left: 100px;">
             <div class="titlebar">
                 <div class="window-title">Page Fault Error</div>
                 <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(3)">×</div>
@@ -242,7 +285,7 @@
             <div class="resize-handle e"></div>
         </div>
 
-        <div class="window" id="window-4" style="top: 60px; left: 300px; width: 450px; height: 500px;">
+        <div class="window" id="window-4" style="top: 15px; left: 120px;">
             <div class="titlebar">
                 <div class="window-title">Runtime Error</div>
                 <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(4)">×</div>
@@ -250,7 +293,7 @@
             <div class="window-content">
                 <div class="error-message">Microsoft Visual C++ Runtime Library - Runtime Error!</div>
                 <div class="image-container">
-                    <video class="error-image" src="assets/img/intro5.mov" autoplay muted loop alt="Error Video"></video>
+                    <video class="error-video" src="assets/img/intro5.mov" autoplay muted loop alt="Error Video"></video>
                 </div>
             </div>
             <div class="resize-handle se"></div>
@@ -258,7 +301,7 @@
             <div class="resize-handle e"></div>
         </div>
 
-        <div class="window" id="window-5" style="top: 140px; left: 350px; width: 450px; height: 500px;">
+        <div class="window" id="window-5" style="top: 40px; left: 140px;">
             <div class="titlebar">
                 <div class="window-title">Blue Screen of Death</div>
                 <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(5)">×</div>
@@ -274,7 +317,7 @@
             <div class="resize-handle e"></div>
         </div>
 
-        <div class="window" id="window-6" style="top: 90px; left: 400px; width: 450px; height: 500px;">
+        <div class="window" id="window-6" style="top: 45px; left: 160px;">
             <div class="titlebar">
                 <div class="window-title">Access Violation</div>
                 <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(6)">×</div>
@@ -290,7 +333,7 @@
             <div class="resize-handle e"></div>
         </div>
 
-        <div class="window" id="window-7" style="top: 180px; left: 450px; width: 450px; height: 500px;">
+        <div class="window" id="window-7" style="top: 50px; left: 180px;">
             <div class="titlebar">
                 <div class="window-title">System Crash</div>
                 <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(7)">×</div>
@@ -320,7 +363,7 @@
 
     <!-- Audio -->
     <audio id="error-sound" preload="auto">
-        <source src="assets/audio/error.wav" type="audio/wav">
+        <source src="assets/audio/error.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -328,17 +371,6 @@
         const totalWindows = 8;
         let isDragging = false, isResizing = false;
         let dragData = {}, resizeData = {};
-
-        // Play error sound on load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const sound = document.getElementById('error-sound');
-                if (sound) {
-                    sound.volume = 0.4;
-                    sound.play().catch(e => console.log('Sound failed:', e));
-                }
-            }, 1000);
-        });
 
         // Update time
         function updateTime() {
@@ -349,29 +381,122 @@
         updateTime();
         setInterval(updateTime, 60000);
 
+        // Image zoom and pan functionality
+        let imageZoomLevels = {};
+        let imagePanData = {};
+
+        function initializeImageZoom() {
+            const images = document.querySelectorAll('.error-image, .error-video');
+            images.forEach((img, index) => {
+                imageZoomLevels[index] = 1;
+                imagePanData[index] = { x: 0, y: 0 };
+                
+                // Zoom with Ctrl+scroll
+                img.addEventListener('wheel', (e) => {
+                    if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        
+                        const zoomIn = e.deltaY < 0;
+                        const zoomStep = 0.1;
+                        
+                        if (zoomIn) {
+                            imageZoomLevels[index] = Math.min(imageZoomLevels[index] + zoomStep, 5);
+                        } else {
+                            imageZoomLevels[index] = Math.max(imageZoomLevels[index] - zoomStep, 0.3);
+                        }
+                        
+                        updateImageTransform(img, index);
+                    }
+                });
+
+                // Pan with mouse drag
+                let isDragging = false;
+                let lastMouseX, lastMouseY;
+
+                img.addEventListener('mousedown', (e) => {
+                    if (imageZoomLevels[index] > 1) {
+                        isDragging = true;
+                        lastMouseX = e.clientX;
+                        lastMouseY = e.clientY;
+                        e.preventDefault();
+                    }
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (isDragging) {
+                        const deltaX = e.clientX - lastMouseX;
+                        const deltaY = e.clientY - lastMouseY;
+                        
+                        imagePanData[index].x += deltaX;
+                        imagePanData[index].y += deltaY;
+                        
+                        updateImageTransform(img, index);
+                        
+                        lastMouseX = e.clientX;
+                        lastMouseY = e.clientY;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    isDragging = false;
+                });
+
+                // Reset zoom and pan on double-click
+                img.addEventListener('dblclick', () => {
+                    imageZoomLevels[index] = 1;
+                    imagePanData[index] = { x: 0, y: 0 };
+                    updateImageTransform(img, index);
+                });
+            });
+        }
+
+        function updateImageTransform(img, index) {
+            const zoom = imageZoomLevels[index];
+            const panX = imagePanData[index].x;
+            const panY = imagePanData[index].y;
+            img.style.transform = `scale(${zoom}) translate(${panX/zoom}px, ${panY/zoom}px)`;
+        }
+
+        // Initialize zoom functionality when page loads
+        document.addEventListener('DOMContentLoaded', initializeImageZoom);
+
         // Close window and show next
         function closeWindow(index) {
+            // Play error sound
             const sound = document.getElementById('error-sound');
             if (sound) {
-                sound.volume = 0.4;
-                sound.play().catch(e => console.log('Sound failed:', e));
+                sound.currentTime = 0; // Reset to beginning
+                sound.volume = 0.5;
+                sound.play().catch(e => {
+                    console.log('Sound play failed:', e);
+                    // Try to enable audio context on user interaction
+                    document.addEventListener('click', () => {
+                        sound.play().catch(err => console.log('Retry failed:', err));
+                    }, { once: true });
+                });
             }
 
             // Freeze the current window instead of closing it
-            const currentWindow = document.getElementById('window-' + index);
-            currentWindow.classList.add('frozen');
-            currentWindow.classList.remove('active');
+            const currentWin = document.getElementById('window-' + index);
+            currentWin.classList.add('frozen');
+            currentWin.classList.remove('active');
 
+            // Show next window after a delay
             if (index < totalWindows - 1) {
                 setTimeout(() => {
                     document.getElementById('window-' + (index + 1)).classList.add('active');
-                }, 400);
+                }, 500);
             } else {
                 // All windows are now frozen, show shutdown screen
                 setTimeout(() => {
                     document.getElementById('shutdown-screen').style.display = 'flex';
-                }, 800);
+                }, 1000);
             }
+        }
+
+        // Function to open window from desktop icon (no sound)
+        function openWindow(index) {
+            document.getElementById('window-' + index).classList.add('active');
         }
 
         // Return to hub from shutdown screen
