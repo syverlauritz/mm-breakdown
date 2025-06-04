@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outro - Memory Maker</title>
+    <title>Del 5 - Visdomspoly - Memory Maker</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -11,78 +15,579 @@
             box-sizing: border-box;
         }
         
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            min-height: 100vh;
-            color: white;
-            padding: 2rem;
+        body { 
+            background: #000; 
+            margin: 0; 
+            overflow: hidden; 
+            font-family: "IBM Plex Mono", monospace;
         }
-        
+
         .nav-header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.9);
             padding: 1rem 2rem;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 2px solid #00FF66;
         }
         
         .nav-header a {
-            color: white;
+            color: #FFFFFF;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #00FF66;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
         }
         
         .nav-header a:hover {
-            opacity: 0.8;
+            background: #FFFFFF;
+            transform: scale(1.05);
         }
-        
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding-top: 6rem;
+
+        .section-title {
+            position: fixed;
+            top: 6rem;
+            left: 2rem;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00FF66;
+            z-index: 100;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+
+        .overlay {
+            position: fixed;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 2.5vw; 
+            line-height: 1.3;
+            color: #FFFFFF; 
             text-align: center;
-        }
-        
-        .intro-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            text-align: center;
-            opacity: 0.9;
-        }
-        
-        .placeholder {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            max-width: 60vw; 
+            pointer-events: none;
+            opacity: 0;
+            z-index: 200;
+            background: rgba(0, 0, 0, 0.8);
             padding: 2rem;
-            margin: 2rem 0;
+            border: 2px solid #00FF66;
+            border-radius: 8px;
+        }
+
+        .label {
+            position: fixed; 
+            bottom: 5vh; 
+            right: 5vw;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 18px; 
+            color: #000;
+            background: #00FF66; 
+            padding: 4px 8px;
+            border-radius: 4px;
+            opacity: 0;
+            z-index: 200;
+        }
+
+        .qr-corner {
+            position: fixed;
+            top: 6rem;
+            right: 2rem;
+            width: 120px;
+            height: 120px;
+            background: #FFFFFF;
+            padding: 8px;
+            border-radius: 8px;
+            z-index: 150;
+            border: 2px solid #00FF66;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .qr-corner:hover {
+            transform: scale(1.05);
+            border-color: #FFFFFF;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
+        }
+
+        .qr-corner img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-corner-label {
+            position: fixed;
+            top: 14.5rem;
+            right: 2rem;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 12px;
+            color: #00FF66;
             text-align: center;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
+            width: 120px;
+            z-index: 150;
+        }
+
+        .instructions {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 1rem;
+            color: #00FF66;
+            z-index: 100;
+            max-width: 300px;
+        }
+
+        .fallback-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 300;
+        }
+
+        .carousel {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card {
+            min-width: 80vw;
+            max-width: 600px;
+            height: 60vh;
+            background: #000;
+            border: 2px solid #00FF66;
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: "IBM Plex Mono", monospace;
+            color: #FFFFFF;
+            margin: 0 1rem;
+        }
+
+        .card.qr-card {
+            border-color: #FFFFFF;
+        }
+
+        .card img {
+            max-width: 200px;
+            max-height: 200px;
+            margin-bottom: 1rem;
+            filter: invert(1);
+        }
+
+        .card-text {
+            font-size: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            background: #00FF66;
+            color: #000;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: "IBM Plex Mono", monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #FFFFFF;
+        }
+
+        .nav-btn:disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 100vh;
+        }
+
+        @media (max-width: 768px) {
+            .overlay {
+                font-size: 4vw;
+                max-width: 80vw;
+                padding: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                top: 5rem;
+            }
+            
+            .instructions {
+                font-size: 0.9rem;
+                max-width: 250px;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="nav-header">
-        <a href="index.html">← Back to Hub</a>
+        <a href="index.html">← Tilbake til Hub</a>
     </nav>
     
-    <div class="content">
-        <h1>Outro</h1>
-        <p class="intro-text">Conclusion and final thoughts on the Memory Maker journey.</p>
+    <h1 class="section-title">Del 5 - Visdomspoly</h1>
+    
+    <a href="https://linktr.ee/syverlauritz" target="_blank" class="qr-corner">
+        <img src="assets/img/qr.png" alt="QR Code">
+    </a>
+    <div class="qr-corner-label">Scan for my links</div>
+    
+    <div class="instructions">
+        Dra for å rotere<br>
+        Rett kamera mot flater<br>
+        for å aktivere visdom
+    </div>
+    
+    <div id="canvas-container"></div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="label" id="qr-label">Scan for my links</div>
+    
+    <!-- Fallback for mobile/no WebGL -->
+    <div class="fallback-container" id="fallback">
+        <nav class="nav-header">
+            <a href="index.html">← Tilbake til Hub</a>
+        </nav>
         
-        <div class="placeholder">
-            <h3>Content Coming Soon</h3>
-            <p>This section will contain closing remarks, reflections, and next steps for the Memory Maker project.</p>
+        <h1 class="section-title">Del 5 - Visdomspoly</h1>
+        
+        <div class="carousel" id="carousel">
+            <!-- Cards will be generated here -->
+        </div>
+        
+        <div class="carousel-nav">
+            <button class="nav-btn" id="prev-btn">← Forrige</button>
+            <button class="nav-btn" id="next-btn">Neste →</button>
         </div>
     </div>
+
+    <script>
+        // Wisdom data - updated to user's exact quotes
+        const wisdom = [
+            "Jeg kaller det ikke AI‑film, men film by any means necessary – 3D, kode, trad animasjon, skuespillere … alt er lov så lenge det ser bra ut.",
+            "Vær fryktløs med nye verktøy. Du kommer til å gå på trynet og grine til langt på natt (ref. vibekoding).",
+            "Som regel finnes det en nett‑tjeneste som gjør på 30 sek det du brukte fem timer på lokalt – sjekk før du kast bort tid.",
+            "«AI‑film» er kanskje den mest rendyrkede øvelsen i art direction som finnes – frustrerende for dem som tidligere lente seg på tegneferdigheter.",
+            "Smak slår alltid oppløsning. Med dårlig innhold kjeder folk seg og fokuserer på feilene",
+            "Hold pipeline lettbent; morgendagens verktøy kan drepe dagens workflow uten forvarsel.",
+            "Litt som vibekoding tar det en livstid å lære de siste 20 prosentene, så det er bare å komme i gang"
+        ];
+        
+        const qrSrc = "assets/img/qr.png";
+        
+        // WebGL availability check
+        function isWebGLAvailable() {
+            try {
+                const canvas = document.createElement('canvas');
+                return !!(window.WebGLRenderingContext && 
+                    (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+            } catch (e) {
+                return false;
+            }
+        }
+        
+        // Mobile check
+        function isMobile() {
+            return window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        
+        // Initialize fallback carousel
+        function initFallback() {
+            const fallback = document.getElementById('fallback');
+            const carousel = document.getElementById('carousel');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            fallback.style.display = 'block';
+            
+            // Create cards
+            const cards = [];
+            wisdom.forEach((text, i) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `<div class="card-text">${text}</div>`;
+                cards.push(card);
+            });
+            
+            // Add QR card
+            const qrCard = document.createElement('div');
+            qrCard.className = 'card qr-card';
+            qrCard.innerHTML = `
+                <img src="${qrSrc}" alt="QR Code">
+                <div class="card-text">Scan for my links</div>
+            `;
+            cards.push(qrCard);
+            
+            let currentCard = 0;
+            
+            function showCard(index) {
+                carousel.innerHTML = '';
+                carousel.appendChild(cards[index]);
+                
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === cards.length - 1;
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentCard > 0) {
+                    currentCard--;
+                    showCard(currentCard);
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentCard < cards.length - 1) {
+                    currentCard++;
+                    showCard(currentCard);
+                }
+            });
+            
+            // Touch gestures
+            let startX = 0;
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            
+            carousel.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0 && currentCard < cards.length - 1) {
+                        currentCard++;
+                        showCard(currentCard);
+                    } else if (diff < 0 && currentCard > 0) {
+                        currentCard--;
+                        showCard(currentCard);
+                    }
+                }
+            });
+            
+            showCard(0);
+        }
+        
+        // Initialize 3D scene
+        function init3D() {
+            const container = document.getElementById('canvas-container');
+            const overlay = document.getElementById('overlay');
+            const qrLabel = document.getElementById('qr-label');
+            
+            // Scene setup
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x000000);
+            
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 8;
+            
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+            
+            // Create octahedron - 8 faces total
+            const geometry = new THREE.OctahedronGeometry(3, 0);
+            
+            const material = new THREE.MeshBasicMaterial({ 
+                color: 0x00FF66, 
+                wireframe: true,
+                transparent: true 
+            });
+            
+            const octahedron = new THREE.Mesh(geometry, material);
+            scene.add(octahedron);
+            
+            // Get face normals for octahedron
+            const faceNormals = [];
+            const positionAttribute = geometry.attributes.position;
+            const faces = [];
+            
+            // Calculate face normals and centers for octahedron
+            for (let i = 0; i < positionAttribute.count; i += 3) {
+                const v1 = new THREE.Vector3().fromBufferAttribute(positionAttribute, i);
+                const v2 = new THREE.Vector3().fromBufferAttribute(positionAttribute, i + 1);
+                const v3 = new THREE.Vector3().fromBufferAttribute(positionAttribute, i + 2);
+                
+                const center = new THREE.Vector3()
+                    .add(v1)
+                    .add(v2)
+                    .add(v3)
+                    .divideScalar(3);
+                
+                const normal = new THREE.Vector3()
+                    .crossVectors(
+                        new THREE.Vector3().subVectors(v2, v1),
+                        new THREE.Vector3().subVectors(v3, v1)
+                    )
+                    .normalize();
+                
+                faces.push({ center, normal });
+            }
+            
+            // Create face fills (initially hidden)
+            const faceFills = [];
+            const qrMesh = new THREE.Mesh(
+                new THREE.PlaneGeometry(2, 2),
+                new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 })
+            );
+            
+            // Position face fills and QR mesh
+            for (let i = 0; i < 8; i++) {
+                if (i === 7) {
+                    // QR face (last face)
+                    const face = faces[i];
+                    qrMesh.position.copy(face.center.clone().multiplyScalar(1.1));
+                    qrMesh.lookAt(face.center.clone().add(face.normal));
+                    scene.add(qrMesh);
+                } else if (i < wisdom.length) {
+                    // Wisdom face
+                    const face = faces[i];
+                    const fillGeometry = new THREE.PlaneGeometry(2, 2);
+                    const fillMaterial = new THREE.MeshBasicMaterial({ 
+                        color: 0x004422, 
+                        transparent: true, 
+                        opacity: 0 
+                    });
+                    const fill = new THREE.Mesh(fillGeometry, fillMaterial);
+                    fill.position.copy(face.center.clone().multiplyScalar(1.1));
+                    fill.lookAt(face.center.clone().add(face.normal));
+                    scene.add(fill);
+                    faceFills.push(fill);
+                }
+            }
+            
+            // Load QR texture
+            const textureLoader = new THREE.TextureLoader();
+            textureLoader.load(qrSrc, (texture) => {
+                qrMesh.material.map = texture;
+                qrMesh.material.needsUpdate = true;
+            });
+            
+            // Controls
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableZoom = false;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.02 * 180 / Math.PI; // Convert to degrees
+            
+            // Stop auto-rotation on first interaction
+            controls.addEventListener('start', () => {
+                controls.autoRotate = false;
+            });
+            
+            // Face detection
+            let activeFace = -1;
+            const cameraDirection = new THREE.Vector3();
+            
+            function checkActiveFace() {
+                camera.getWorldDirection(cameraDirection);
+                
+                let newActiveFace = -1;
+                let minAngle = Infinity;
+                
+                for (let i = 0; i < 8; i++) {
+                    const face = faces[i];
+                    const angleBetween = cameraDirection.angleTo(face.normal.clone().negate()) * 180 / Math.PI;
+                    
+                    if (angleBetween < 15 && angleBetween < minAngle) {
+                        minAngle = angleBetween;
+                        newActiveFace = i;
+                    }
+                }
+                
+                if (newActiveFace !== activeFace) {
+                    // Deactivate previous face
+                    if (activeFace !== -1) {
+                        if (activeFace === 7) {
+                            // QR face
+                            octahedron.material.color.setHex(0x00FF66);
+                            qrMesh.material.opacity = 0;
+                            gsap.to(qrLabel, { opacity: 0, duration: 0.3 });
+                        } else if (activeFace < wisdom.length) {
+                            // Wisdom face
+                            faceFills[activeFace].material.opacity = 0;
+                        }
+                        gsap.to(overlay, { opacity: 0, duration: 0.3 });
+                    }
+                    
+                    activeFace = newActiveFace;
+                    
+                    // Activate new face
+                    if (activeFace !== -1) {
+                        if (activeFace === 7) {
+                            // QR face
+                            octahedron.material.color.setHex(0xFFFFFF);
+                            qrMesh.material.opacity = 1;
+                            gsap.to(qrLabel, { opacity: 1, duration: 0.3 });
+                        } else if (activeFace < wisdom.length) {
+                            // Wisdom face
+                            faceFills[activeFace].material.opacity = 0.4;
+                            overlay.textContent = wisdom[activeFace];
+                            gsap.to(overlay, { opacity: 1, duration: 0.3 });
+                        }
+                    }
+                }
+            }
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                checkActiveFace();
+                renderer.render(scene, camera);
+            }
+            
+            // Window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            animate();
+        }
+        
+        // Initialize based on capabilities
+        if (!isWebGLAvailable() || isMobile()) {
+            initFallback();
+        } else {
+            init3D();
+        }
+    </script>
 </body>
 </html> 
