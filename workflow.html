@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workflow - Memory Maker</title>
+    <title>Del 3 - Hvordan lage AI-film (Arbeidsflyt) - Memory Maker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -11,78 +13,1552 @@
             box-sizing: border-box;
         }
         
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            min-height: 100vh;
-            color: white;
-            padding: 2rem;
+        :root {
+            --primary-blue: #0066FF;
+            --secondary-red: #FF3366;
+            --accent-yellow: #FFE600;
+            --accent-green: #00FF88;
+            --pure-black: #000000;
+            --pure-white: #FFFFFF;
+            --cream: #F5F5DC;
+            --text-light: #ffffff;
+            --text-muted: #cccccc;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+        
+        /* Navigation */
         .nav-header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            background: var(--pure-black);
             padding: 1rem 2rem;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 4px solid var(--primary-blue);
         }
         
         .nav-header a {
-            color: white;
+            color: var(--text-light);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
         }
         
         .nav-header a:hover {
-            opacity: 0.8;
+            background: var(--secondary-red);
+            transform: scale(1.05);
         }
         
-        .content {
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--pure-black);
+            z-index: 2;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: -10%;
+            width: 200px;
+            height: 200px;
+            background: var(--secondary-red);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            right: 10%;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 180px solid var(--accent-yellow);
+            z-index: 1;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
             max-width: 800px;
-            margin: 0 auto;
-            padding-top: 6rem;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-        
-        .intro-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            text-align: center;
-            opacity: 0.9;
-        }
-        
-        .placeholder {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
             padding: 2rem;
-            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -100px;
+            width: 150px;
+            height: 150px;
+            background: var(--primary-blue);
+            border-radius: 0;
+            z-index: -1;
+        }
+        
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--pure-white);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: var(--cream);
+            font-weight: 400;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            background: var(--accent-green);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .scroll-arrow {
+            font-size: 1.5rem;
+            color: var(--pure-black);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        /* Section Base */
+        .section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .section-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
             text-align: center;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
+            color: var(--pure-white);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        
+        /* Still-fasen Section */
+        .still-section {
+            background: var(--pure-black);
+            position: relative;
+        }
+        
+        .still-section::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            width: 120px;
+            height: 120px;
+            background: var(--secondary-red);
+            border-radius: 50%;
+        }
+        
+        .still-section::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            right: 8%;
+            width: 200px;
+            height: 200px;
+            background: var(--primary-blue);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
+        .accordion-header {
+            background: var(--cream);
+            color: var(--pure-black);
+            padding: 2rem;
+            border-radius: 0;
+            cursor: pointer;
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .accordion-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: var(--accent-yellow);
+        }
+        
+        .accordion-header:hover {
+            background: var(--accent-yellow);
+            transform: translateX(10px);
+        }
+        
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .timeline-item {
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .timeline-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2.5rem;
+            color: var(--pure-white);
+            transition: all 0.3s ease;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-icon {
+            background: var(--secondary-red);
+            border-radius: 50%;
+            clip-path: none;
+        }
+        
+        .timeline-item:nth-child(3n) .timeline-icon {
+            background: var(--accent-green);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
+        .timeline-item:hover .timeline-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        .timeline-label {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--pure-white);
+        }
+        
+        .tooltip {
+            position: absolute;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--pure-white);
+            color: var(--pure-black);
+            padding: 1.5rem;
+            border-radius: 0;
+            width: 320px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 10;
+            border: 4px solid var(--accent-yellow);
+        }
+        
+        .timeline-item:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            top: -140px;
+        }
+        
+        .image-carousel {
+            margin: 4rem 0;
+            position: relative;
+            border-radius: 0;
+            border: 8px solid var(--accent-yellow);
+            overflow: hidden;
+        }
+        
+        .before-after-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            cursor: ew-resize;
+        }
+        
+        .before-after-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .before-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .after-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: width 0.1s ease;
+        }
+        
+        .after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 800px;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-yellow);
+            cursor: ew-resize;
+            transform: translateX(-50%);
+            transition: left 0.1s ease;
+        }
+        
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-yellow);
+            border: 3px solid var(--pure-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: ew-resize;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: var(--pure-black);
+            font-weight: 900;
+            box-shadow: 0 0 20px rgba(255, 230, 0, 0.5);
+        }
+        
+        .slider-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 230, 0, 0.8);
+        }
+        
+        /* Video-fasen Section */
+        .video-section {
+            background: var(--pure-black);
+            position: relative;
+        }
+        
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            background: var(--accent-green);
+            border-radius: 50%;
+        }
+        
+        .video-section::after {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            left: 5%;
+            width: 100px;
+            height: 200px;
+            background: var(--secondary-red);
+        }
+        
+        .hot-tip {
+            position: sticky;
+            top: 120px;
+            float: right;
+            width: 280px;
+            background: var(--accent-yellow);
+            color: var(--pure-black);
+            padding: 2rem;
+            border-radius: 0;
+            margin-left: 2rem;
+            border: 4px solid var(--primary-blue);
+        }
+        
+        .hot-tip-title {
+            color: var(--pure-black);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .flip-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+        
+        .flip-card {
+            background: transparent;
+            perspective: 1000px;
+            height: 350px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            border: 4px solid var(--pure-white);
+        }
+        
+        .flip-card-front {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+        }
+        
+        .flip-card:nth-child(2) .flip-card-front {
+            background: var(--secondary-red);
+        }
+        
+        .flip-card:nth-child(3) .flip-card-front {
+            background: var(--accent-green);
+            color: var(--pure-black);
+        }
+        
+        .flip-card-back {
+            background: var(--pure-white);
+            color: var(--pure-black);
+            transform: rotateY(180deg);
+        }
+        
+        .warning-banner {
+            background: var(--secondary-red);
+            color: var(--pure-white);
+            padding: 2rem;
+            margin: 3rem 0;
+            border-left: 12px solid var(--accent-yellow);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        /* Lipsync Section */
+        .lipsync-section {
+            background: var(--pure-black);
+            position: relative;
+        }
+        
+        .lipsync-section::before {
+            content: '';
+            position: absolute;
+            top: 25%;
+            left: 8%;
+            width: 0;
+            height: 0;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 140px solid var(--accent-yellow);
+        }
+        
+        .lipsync-section::after {
+            content: '';
+            position: absolute;
+            bottom: 15%;
+            right: 12%;
+            width: 180px;
+            height: 180px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+        }
+        
+        .alert-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 2rem;
+            color: var(--secondary-red);
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .column-card {
+            background: var(--cream);
+            color: var(--pure-black);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid var(--primary-blue);
+        }
+        
+        .column-card:nth-child(2) {
+            border-color: var(--secondary-red);
+        }
+        
+        .column-card:nth-child(3) {
+            border-color: var(--accent-green);
+        }
+        
+        .column-card:nth-child(4) {
+            border-color: var(--accent-yellow);
+        }
+        
+        .column-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--primary-blue);
+        }
+        
+        .column-card:nth-child(2)::before {
+            background: var(--secondary-red);
+        }
+        
+        .column-card:nth-child(3)::before {
+            background: var(--accent-green);
+        }
+        
+        .column-card:nth-child(4)::before {
+            background: var(--accent-yellow);
+        }
+        
+        .column-card:hover {
+            transform: translateY(-15px) rotate(1deg);
+        }
+        
+        .speech-bubble {
+            position: absolute;
+            top: -25px;
+            right: 20px;
+            background: var(--secondary-red);
+            color: var(--pure-white);
+            padding: 0.8rem 1.2rem;
+            border-radius: 0;
+            font-size: 0.9rem;
+            font-weight: 700;
+            opacity: 0;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .column-card:hover .speech-bubble {
+            opacity: 1;
+            top: -20px;
+        }
+        
+        /* Post-produksjon Section */
+        .post-section {
+            background: var(--pure-black);
+            position: relative;
+        }
+        
+        .post-section::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            width: 120px;
+            height: 120px;
+            background: var(--accent-green);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
+        .post-section::after {
+            content: '';
+            position: absolute;
+            bottom: 25%;
+            right: 20%;
+            width: 160px;
+            height: 160px;
+            background: var(--secondary-red);
+            border-radius: 50%;
+        }
+        
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+        
+        .tool-brick {
+            background: var(--pure-white);
+            color: var(--pure-black);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.5s ease;
+            transform: translateY(50px);
+            opacity: 0;
+            border: 4px solid var(--primary-blue);
+        }
+        
+        .tool-brick:nth-child(even) {
+            border-color: var(--secondary-red);
+        }
+        
+        .tool-brick:nth-child(3n) {
+            border-color: var(--accent-green);
+        }
+        
+        .tool-brick.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .tool-brick:hover {
+            transform: translateY(-15px) scale(1.05) rotate(-2deg);
+        }
+        
+        .tool-logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+            font-weight: 900;
+        }
+        
+        .tool-brick:nth-child(even) .tool-logo {
+            color: var(--secondary-red);
+        }
+        
+        .tool-brick:nth-child(3n) .tool-logo {
+            color: var(--accent-green);
+        }
+        
+        .ae-logo {
+            animation: spin-once 3s ease-in-out;
+        }
+        
+        @keyframes spin-once {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .toggle-container {
+            text-align: center;
+            margin: 3rem 0;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            margin: 0 1rem;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--cream);
+            transition: .4s;
+            border: 3px solid var(--primary-blue);
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 28px;
+            width: 28px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--primary-blue);
+            transition: .4s;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--accent-yellow);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(40px);
+            background-color: var(--secondary-red);
+        }
+        
+        .demo-video {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            margin: 3rem auto;
+            display: block;
+            border: 8px solid var(--accent-yellow);
+        }
+        
+        /* Konklusjon Section */
+        .conclusion-section {
+            background: var(--pure-black);
+            position: relative;
+        }
+        
+        .conclusion-section::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 200px;
+            height: 200px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+        }
+        
+        .conclusion-section::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            right: 15%;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 180px solid var(--accent-green);
+        }
+        
+        .conclusion-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .monospace-text {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin: 4rem 0;
+            color: var(--pure-white);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+        
+        .conclusion-content {
+            background: var(--cream);
+            color: var(--pure-black);
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 8px solid var(--secondary-red);
+            position: relative;
+        }
+        
+        .conclusion-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-yellow);
+        }
+        
+        .cta-button {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+            padding: 1.5rem 3rem;
+            border: 4px solid var(--pure-white);
+            font-size: 1.3rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 3rem auto;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        
+        .cta-button:hover {
+            background: var(--secondary-red);
+            transform: translateY(-5px) scale(1.05);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .timeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hot-tip {
+                position: static;
+                float: none;
+                width: 100%;
+                margin: 2rem 0;
+            }
+            
+            .monospace-text {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--pure-black);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-blue);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-red);
+        }
+        
+        /* Parallax Background Elements */
+        .parallax-element {
+            pointer-events: none;
+            transition: none;
+        }
+        
+        .floating-circle {
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-triangle {
+            width: 0;
+            height: 0;
+            animation: rotate-float 8s linear infinite;
+        }
+        
+        .floating-square {
+            animation: pulse-float 4s ease-in-out infinite;
+        }
+        
+        .floating-hexagon {
+            width: 60px;
+            height: 34.64px;
+            position: relative;
+            animation: wobble 5s ease-in-out infinite;
+        }
+        
+        .floating-hexagon::before,
+        .floating-hexagon::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+        }
+        
+        .floating-hexagon::before {
+            bottom: 100%;
+            border-bottom: 17.32px solid var(--secondary-red);
+        }
+        
+        .floating-hexagon::after {
+            top: 100%;
+            border-top: 17.32px solid var(--secondary-red);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(0px) rotate(180deg); }
+            75% { transform: translateY(-10px) rotate(270deg); }
+        }
+        
+        @keyframes rotate-float {
+            0% { transform: rotate(0deg) translateY(0px); }
+            25% { transform: rotate(90deg) translateY(-15px); }
+            50% { transform: rotate(180deg) translateY(0px); }
+            75% { transform: rotate(270deg) translateY(-10px); }
+            100% { transform: rotate(360deg) translateY(0px); }
+        }
+        
+        @keyframes pulse-float {
+            0%, 100% { transform: scale(1) translateY(0px); }
+            25% { transform: scale(1.1) translateY(-10px); }
+            50% { transform: scale(0.9) translateY(-20px); }
+            75% { transform: scale(1.05) translateY(-5px); }
+        }
+        
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg) translateX(0px); }
+            25% { transform: rotate(5deg) translateX(10px); }
+            50% { transform: rotate(0deg) translateX(0px); }
+            75% { transform: rotate(-5deg) translateX(-10px); }
         }
     </style>
 </head>
 <body>
-    <nav class="nav-header">
-        <a href="index.html">← Back to Hub</a>
-    </nav>
+    <!-- Parallax Background Elements -->
+    <!-- Large Elements -->
+    <div class="parallax-element floating-circle" style="position: fixed; width: 120px; height: 120px; background: var(--primary-blue); top: 10%; left: 5%; opacity: 0.3; z-index: 1;" data-speed="0.5"></div>
+    <div class="parallax-element floating-triangle" style="position: fixed; top: 20%; right: 10%; border-left: 80px solid transparent; border-right: 80px solid transparent; border-bottom: 140px solid var(--secondary-red); opacity: 0.4; z-index: 1;" data-speed="0.3"></div>
+    <div class="parallax-element floating-square" style="position: fixed; width: 100px; height: 100px; background: var(--accent-yellow); top: 60%; left: 15%; opacity: 0.5; z-index: 1;" data-speed="0.7"></div>
     
-    <div class="content">
-        <h1>Workflow</h1>
-        <p class="intro-text">Behind the scenes process and methodology.</p>
-        
-        <div class="placeholder">
-            <h3>Content Coming Soon</h3>
-            <p>This section will showcase the production workflow, tools used, and creative process behind Memory Maker.</p>
+    <!-- Medium Elements -->
+    <div class="parallax-element floating-hexagon" style="position: fixed; top: 30%; left: 70%; opacity: 0.6; background: var(--secondary-red); z-index: 1;" data-speed="0.4"></div>
+    <div class="parallax-element floating-circle" style="position: fixed; width: 80px; height: 80px; background: var(--accent-green); top: 70%; right: 20%; opacity: 0.4; z-index: 1;" data-speed="0.6"></div>
+    <div class="parallax-element floating-triangle" style="position: fixed; top: 45%; left: 80%; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 90px solid var(--accent-yellow); opacity: 0.5; z-index: 1;" data-speed="0.8"></div>
+    
+    <!-- Small Elements -->
+    <div class="parallax-element floating-circle" style="position: fixed; width: 40px; height: 40px; background: var(--primary-blue); top: 80%; left: 60%; opacity: 0.6; z-index: 1;" data-speed="1.0"></div>
+    <div class="parallax-element floating-square" style="position: fixed; width: 50px; height: 50px; background: var(--secondary-red); top: 25%; left: 40%; opacity: 0.4; z-index: 1;" data-speed="0.2"></div>
+    <div class="parallax-element floating-triangle" style="position: fixed; top: 55%; right: 5%; border-left: 30px solid transparent; border-right: 30px solid transparent; border-bottom: 55px solid var(--accent-green); opacity: 0.7; z-index: 1;" data-speed="0.9"></div>
+    
+    <!-- Micro Elements -->
+    <div class="parallax-element floating-circle" style="position: fixed; width: 25px; height: 25px; background: var(--accent-yellow); top: 35%; left: 25%; opacity: 0.8; z-index: 1;" data-speed="1.2"></div>
+    <div class="parallax-element floating-square" style="position: fixed; width: 30px; height: 30px; background: var(--accent-green); top: 75%; right: 40%; opacity: 0.5; z-index: 1;" data-speed="0.3"></div>
+    <div class="parallax-element floating-circle" style="position: fixed; width: 35px; height: 35px; background: var(--primary-blue); top: 15%; right: 30%; opacity: 0.6; z-index: 1;" data-speed="0.8"></div>
+
+    <nav class="nav-header">
+        <a href="index.html">
+            <i class="fas fa-arrow-left"></i>
+            Tilbake til Hub
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video class="hero-video" autoplay muted loop>
+            <source src="https://cdn.pixabay.com/vimeo/463373228/abstract-42924.mp4?width=1920&hash=f58f6b9f4ad7e49e1dfe5e57dc8e1a36e42906b3" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Hvordan lage AI-film</h1>
+            <p class="hero-subtitle">Realistisk workflow for 2025, fra idé til ferdig snutt</p>
         </div>
-    </div>
+        <div class="scroll-indicator" onclick="document.querySelector('.still-section').scrollIntoView()">
+            <i class="fas fa-chevron-down scroll-arrow"></i>
+        </div>
+    </section>
+
+    <!-- Still-fasen Section -->
+    <section class="section still-section">
+        <div class="container">
+            <h2 class="section-title">STILL-FASEN (Bilder)</h2>
+            
+            <div class="accordion-header">
+                <h3><i class="fas fa-images"></i> Alle stills skal vise de samme karakterene, stilen og rekvisittene</h3>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎨</div>
+                    <div class="timeline-label">MidJourney / Replicate</div>
+                    <div class="tooltip">
+                        <h4>Startbilder & Konsept</h4>
+                        <p>MidJourney ELLER Consistent Character (Replicate). Begge gir grunnlaget for hele prosjektet.</p>
+                        <img src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=400&q=80" alt="AI Art" style="width: 100%; border-radius: 5px; margin-top: 0.5rem;">
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎯</div>
+                    <div class="timeline-label">Krea LoRA</div>
+                    <div class="tooltip">
+                        <h4>LoRA-trening</h4>
+                        <p>Krea (proprietær) → CivitAI + Tensor.art (private). Tilpasset modell.</p>
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&q=80" alt="AI Training" style="width: 100%; border-radius: 5px; margin-top: 0.5rem;">
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">⚡</div>
+                    <div class="timeline-label">CivitAI</div>
+                    <div class="tooltip">
+                        <h4>Avansert generering</h4>
+                        <p>CivitAI og Tensor.art for avanserte modeller og kontroll.</p>
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&q=80" alt="Advanced AI" style="width: 100%; border-radius: 5px; margin-top: 0.5rem;">
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">🚀</div>
+                    <div class="timeline-label">Krea Flux</div>
+                    <div class="tooltip">
+                        <h4>Flux-generering</h4>
+                        <p>Krea Flux + LoRA for høykvalitets bildegenerering.</p>
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80" alt="High Quality" style="width: 100%; border-radius: 5px; margin-top: 0.5rem;">
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">📋</div>
+                    <div class="timeline-label">ChatGPT Vision</div>
+                    <div class="tooltip">
+                        <h4>Storyboard</h4>
+                        <p>Kast skisse i ChatGPT-Vision for grov framing og komposisjon.</p>
+                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&q=80" alt="Storyboard" style="width: 100%; border-radius: 5px; margin-top: 0.5rem;">
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">🔍</div>
+                    <div class="timeline-label">Oppskalering</div>
+                    <div class="tooltip">
+                        <h4>Oppskalering</h4>
+                        <p>Krea eller Magnific; aldri høyere enn slutt-oppløsningen.</p>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="Upscaling" style="width: 100%; border-radius: 5px; margin-top: 0.5rem;">
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎨</div>
+                    <div class="timeline-label">Photoshop</div>
+                    <div class="tooltip">
+                        <h4>Manuell polering</h4>
+                        <p>Masse Photoshop for final touch og perfeksjonering.</p>
+                        <img src="https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&q=80" alt="Photoshop" style="width: 100%; border-radius: 5px; margin-top: 0.5rem;">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-carousel">
+                <div class="before-after-container">
+                    <div class="before-after-wrapper">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="Before Upscaling" class="before-image">
+                        <div class="after-overlay">
+                            <img src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=800&q=80" alt="After Upscaling" class="after-image">
+                        </div>
+                        <div class="slider-handle">
+                            <div class="slider-button">⟷</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-weight: 700;">
+                    <span>← FØR OPPSKALERING | ETTER OPPSKALERING →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video-fasen Section -->
+    <section class="section video-section">
+        <div class="container">
+            <h2 class="section-title">VIDEO-FASEN (img2vid)</h2>
+            
+            <div class="hot-tip">
+                <div class="hot-tip-title">
+                    <i class="fas fa-fire"></i>
+                    Hot Tip!
+                </div>
+                <p>Lær kamerabegripene: <a href="https://en.wikipedia.org/wiki/List_of_camera_movements" target="_blank" style="color: var(--primary-blue);">crane-in, push-in, dolly-zoom</a></p>
+            </div>
+            
+            <div class="flip-cards">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3><i class="fas fa-video"></i> Kling</h3>
+                            <p>80% av produksjonsarbeid</p>
+                            <div style="margin-top: 1rem; color: var(--primary-blue);">⭐⭐⭐⭐⭐</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Kling Detaljer</h3>
+                            <p>Mest stabile og pålitelige resultater. Brukes til hovedtyngden av videoarbeid.</p>
+                            <video autoplay muted loop style="width: 100%; border-radius: 10px; margin-top: 1rem;">
+                                <source src="https://cdn.pixabay.com/vimeo/464883998/camera-43494.mp4?width=640&hash=e8b7e4c4c9c4f3e8a8e4c3c8a8e4c3c8" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3><i class="fas fa-camera"></i> Higgsfield</h3>
+                            <p>Spicy kameradrag</p>
+                            <div style="margin-top: 1rem; color: var(--accent-yellow);">🌶️🌶️🌶️</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Higgsfield Kraft</h3>
+                            <p>Spektakulære kamerabevegelser og dynamiske overganger.</p>
+                            <video autoplay muted loop style="width: 100%; border-radius: 10px; margin-top: 1rem;">
+                                <source src="https://cdn.pixabay.com/vimeo/465019769/camera-43530.mp4?width=640&hash=1234567890abcdef1234567890abcdef" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3><i class="fas fa-exchange-alt"></i> Pika Labs</h3>
+                            <p>Innholdsbytte</p>
+                            <div style="margin-top: 1rem; color: var(--text-muted);">⚡⚡⚡</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Pika Labs Magi</h3>
+                            <p>Utmerket for objekt- og innholdsmanipulasjon i eksisterende videoer.</p>
+                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=300&q=80" alt="Content swap" style="width: 100%; border-radius: 10px; margin-top: 1rem;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="warning-banner">
+                <h4><i class="fas fa-exclamation-triangle"></i> Veo 3 Advarsel</h4>
+                <p>Flott til LinkedIn-likes, mindre flott til produksjon. Ser bra ut på overflaten, men mangler dybde for seriøst arbeid.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lipsync-fasen Section -->
+    <section class="section lipsync-section">
+        <div class="container">
+            <h2 class="section-title">LIPSYNC-FASEN</h2>
+            
+            <div class="alert-header">
+                <span style="font-size: 2rem;">🚨</span> Her er vi fortsatt ganske fucked
+            </div>
+            
+            <div class="three-columns">
+                <div class="column-card">
+                    <div class="speech-bubble">"Bannskap og faenskap!"</div>
+                    <h3><i class="fas fa-microphone"></i> Kling 1.0</h3>
+                    <p>Grunnleggende lipsync-funksjonalitet. Fungerer, men med begrensninger.</p>
+                    <video autoplay muted loop style="width: 100%; border-radius: 10px; margin-top: 1rem;">
+                        <source src="https://cdn.pixabay.com/vimeo/308975163/man-22070.mp4?width=640&hash=abcdef1234567890abcdef1234567890" type="video/mp4">
+                    </video>
+                </div>
+                
+                <div class="column-card">
+                    <div class="speech-bubble">"Dette ser ut som Ivo Caprino!"</div>
+                    <h3><i class="fas fa-theater-masks"></i> Hedra</h3>
+                    <p>Stills med "Ivo Caprino-dukker" estetikk. Stilisert, men begrenset.</p>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80" alt="Puppet style" style="width: 100%; border-radius: 10px; margin-top: 1rem;">
+                </div>
+                
+                <div class="column-card">
+                    <div class="speech-bubble">"Hva i helvete sa du?"</div>
+                    <h3><i class="fas fa-magic"></i> Pixverse</h3>
+                    <p>Mest avanserte lipsync-alternativer, men fortsatt mye prøving og feiling.</p>
+                    <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=300&q=80" alt="AI Lips" style="width: 100%; border-radius: 10px; margin-top: 1rem;">
+                </div>
+                
+                <div class="column-card">
+                    <div class="speech-bubble">"Why do humans love poison??"</div>
+                    <h3><i class="fas fa-robot"></i> Runway Act-1</h3>
+                    <p>Nye muligheter for ekspressive karakterer og realistiske bevegelser.</p>
+                    <img src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=300&q=80" alt="Runway Act-1 AI Character" style="width: 100%; border-radius: 10px; margin-top: 1rem; object-fit: cover; height: 200px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post-produksjon Section -->
+    <section class="section post-section">
+        <div class="container">
+            <h2 class="section-title">POST-PRODUKSJON</h2>
+            
+            <div class="masonry-grid">
+                <div class="tool-brick">
+                    <div class="tool-logo"><i class="fas fa-runway"></i></div>
+                    <h4>Runway</h4>
+                    <p>AI-drevne matter og effects</p>
+                </div>
+                
+                <div class="tool-brick">
+                    <div class="tool-logo">🎨</div>
+                    <h4>Krea</h4>
+                    <p>Oppskalering og interpolering</p>
+                </div>
+                
+                <div class="tool-brick">
+                    <div class="tool-logo">🔮</div>
+                    <h4>Mago AI</h4>
+                    <p>BETA - Stilisering og effects</p>
+                </div>
+                
+                <div class="tool-brick">
+                    <div class="tool-logo ae-logo">Ae</div>
+                    <h4>After Effects</h4>
+                    <p>Profesjonell compositing</p>
+                </div>
+                
+                <div class="tool-brick">
+                    <div class="tool-logo">Pr</div>
+                    <h4>Premiere</h4>
+                    <p>Final cut og fargekorrigering</p>
+                </div>
+            </div>
+            
+            <div class="toggle-container">
+                <span style="margin-right: 1rem; font-weight: 900; color: var(--secondary-red);" id="matteLabel">MATTE-EKSEMPEL</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="videoToggle">
+                    <span class="slider"></span>
+                </label>
+                <span style="margin-left: 1rem; font-weight: 900; color: var(--text-muted);" id="styleLabel">STILISERINGS-EKSEMPEL</span>
+            </div>
+            
+            <div style="text-align: center; margin: 1rem 0; font-size: 1.1rem; color: var(--accent-yellow);">
+                <span id="currentMode">🎬 Viser: AI-genererte matter og compositing</span>
+            </div>
+            
+            <video class="demo-video" id="demoVideo" autoplay muted loop>
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <!-- Konklusjon Section -->
+    <section class="section conclusion-section">
+        <video class="conclusion-bg-video" autoplay muted loop>
+            <source src="https://cdn.pixabay.com/vimeo/463373228/abstract-42924.mp4?width=1920&hash=f58f6b9f4ad7e49e1dfe5e57dc8e1a36e42906b3" type="video/mp4">
+        </video>
+        
+        <div class="container">
+            <div class="monospace-text">
+                80% struktur – 20% kreativ akrobatikk
+            </div>
+            
+            <div class="conclusion-content">
+                <p style="font-size: 1.3rem; line-height: 1.8;">
+                    De første 80% er rørleggerarbeid i verktøyene. De siste 20% er når alt rakner og du må sy sammen disipliner, patche glitcher og få dritten til å funke.
+                </p>
+                
+                <a href="#qa-section" class="cta-button">
+                    <i class="fas fa-question-circle"></i>
+                    Still spørsmål på slutten
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all tool bricks
+        document.querySelectorAll('.tool-brick').forEach(brick => {
+            observer.observe(brick);
+        });
+
+        // Toggle video functionality
+        const toggle = document.getElementById('videoToggle');
+        const video = document.getElementById('demoVideo');
+        const matteLabel = document.getElementById('matteLabel');
+        const styleLabel = document.getElementById('styleLabel');
+        const currentMode = document.getElementById('currentMode');
+        
+        const videos = {
+            matte: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+            style: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
+        };
+        
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                // Switched to Stylization
+                video.src = videos.style;
+                matteLabel.style.color = 'var(--text-muted)';
+                styleLabel.style.color = 'var(--secondary-red)';
+                currentMode.innerHTML = '🎨 Viser: AI-stilisering og kreative effects';
+            } else {
+                // Switched to Matte
+                video.src = videos.matte;
+                matteLabel.style.color = 'var(--secondary-red)';
+                styleLabel.style.color = 'var(--text-muted)';
+                currentMode.innerHTML = '🎬 Viser: AI-genererte matter og compositing';
+            }
+            video.load();
+            
+            // Add a brief visual feedback
+            video.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                video.style.transform = 'scale(1)';
+            }, 200);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Disable right-click on videos
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('contextmenu', e => e.preventDefault());
+        });
+
+        // Parallax scrolling effects (simplified and improved)
+        function initParallax() {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            
+            if (parallaxElements.length === 0) {
+                console.log('No parallax elements found');
+                return;
+            }
+            
+            console.log(`Found ${parallaxElements.length} parallax elements`);
+            
+            function updateParallax() {
+                const scrollY = window.pageYOffset;
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = parseFloat(element.dataset.speed) || 0.5;
+                    const yPos = scrollY * speed;
+                    
+                    // Apply transform with better performance
+                    element.style.willChange = 'transform';
+                    element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                });
+            }
+            
+            // Use passive event listener for better performance
+            window.addEventListener('scroll', updateParallax, { passive: true });
+            
+            // Initial call
+            updateParallax();
+            
+            console.log('Parallax initialized successfully');
+        }
+        
+        // Initialize parallax when page loads
+        document.addEventListener('DOMContentLoaded', initParallax);
+
+        // Existing parallax effect for hero (enhanced)
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            const heroVideo = document.querySelector('.hero-video');
+            if (heroVideo && scrollY < window.innerHeight) {
+                heroVideo.style.transform = `translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0002})`;
+            }
+        });
+
+        // Preload critical resources
+        window.addEventListener('load', () => {
+            // Preload videos
+            const videoSources = [
+                'https://cdn.pixabay.com/vimeo/463373228/abstract-42924.mp4',
+                'https://cdn.pixabay.com/vimeo/464883998/camera-43494.mp4',
+                'https://cdn.pixabay.com/vimeo/465019769/camera-43530.mp4'
+            ];
+            
+            videoSources.forEach(src => {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'video';
+                link.href = src;
+                document.head.appendChild(link);
+            });
+        });
+
+        // Before/After Slider functionality
+        function initBeforeAfterSlider() {
+            const container = document.querySelector('.before-after-container');
+            const afterOverlay = document.querySelector('.after-overlay');
+            const sliderHandle = document.querySelector('.slider-handle');
+            const sliderButton = document.querySelector('.slider-button');
+            
+            if (!container || !afterOverlay || !sliderHandle || !sliderButton) return;
+            
+            let isDragging = false;
+            
+            function updateSlider(e) {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                
+                afterOverlay.style.width = percentage + '%';
+                sliderHandle.style.left = percentage + '%';
+            }
+            
+            function startDrag(e) {
+                isDragging = true;
+                container.style.cursor = 'ew-resize';
+                updateSlider(e);
+            }
+            
+            function stopDrag() {
+                isDragging = false;
+                container.style.cursor = 'ew-resize';
+            }
+            
+            function onMouseMove(e) {
+                if (isDragging) {
+                    updateSlider(e);
+                }
+            }
+            
+            // Mouse events
+            sliderButton.addEventListener('mousedown', startDrag);
+            sliderHandle.addEventListener('mousedown', startDrag);
+            container.addEventListener('mousedown', startDrag);
+            
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', stopDrag);
+            
+            // Touch events for mobile
+            function handleTouch(e) {
+                const touch = e.touches[0] || e.changedTouches[0];
+                const rect = container.getBoundingClientRect();
+                const x = touch.clientX - rect.left;
+                const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                
+                afterOverlay.style.width = percentage + '%';
+                sliderHandle.style.left = percentage + '%';
+            }
+            
+            container.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                handleTouch(e);
+            });
+            
+            container.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                handleTouch(e);
+            });
+        }
+        
+        // Initialize before/after slider when page loads
+        document.addEventListener('DOMContentLoaded', initBeforeAfterSlider);
+    </script>
 </body>
 </html> 
