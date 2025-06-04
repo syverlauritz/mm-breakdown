@@ -1,0 +1,5 @@
+The memory sequences were made in two steps.
+
+1. Careful manual animation of clips to make them flow between one another smoothly.
+
+2. A custom filter built in TouchDesigner that analyzes the motion vectors of the video, and uses them to displace the video even further, resulting in a dreamy, smoke-like expression.

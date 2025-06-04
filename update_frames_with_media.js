@@ -42,22 +42,54 @@ for (const frame of frames) {
             else if (VIDEO_EXTS.includes(ext)) byId[id].video = file;
         }
     }
-    // Priority: txt > image > video
+    // Sort files by filename to respect the intended order
     const additionalImages = [];
     const videoClips = [];
-    let notes = frame.content.notes || '';
-    for (const id in byId) {
-        if (byId[id].txt) {
-            // Read txt file and append to notes
-            const txtPath = path.join(MEDIA_DIR, byId[id].txt);
+    const orderedContent = []; // New: single ordered array for mixed content
+    let notes = ''; // Start with empty notes instead of existing ones
+    
+    // Get all IDs and sort them to maintain filename order
+    const sortedIds = Object.keys(byId).sort();
+    
+    for (const id of sortedIds) {
+        const fileGroup = byId[id];
+        
+        // Add content to ordered array based on file type
+        if (fileGroup.txt) {
+            const txtPath = path.join(MEDIA_DIR, fileGroup.txt);
             const txtContent = fs.readFileSync(txtPath, 'utf8');
+            orderedContent.push({
+                type: 'text',
+                content: txtContent.trim(),
+                filename: fileGroup.txt
+            });
+            // Also keep for backwards compatibility
             notes += (notes ? '\n' : '') + txtContent.trim();
-        } else if (byId[id].image) {
-            additionalImages.push(path.join(MEDIA_DIR, byId[id].image));
-        } else if (byId[id].video) {
-            videoClips.push(path.join(MEDIA_DIR, byId[id].video));
+        }
+        
+        if (fileGroup.image) {
+            orderedContent.push({
+                type: 'image',
+                src: path.join(MEDIA_DIR, fileGroup.image),
+                filename: fileGroup.image
+            });
+            // Also keep for backwards compatibility
+            additionalImages.push(path.join(MEDIA_DIR, fileGroup.image));
+        }
+        
+        if (fileGroup.video) {
+            orderedContent.push({
+                type: 'video',
+                src: path.join(MEDIA_DIR, fileGroup.video),
+                filename: fileGroup.video
+            });
+            // Also keep for backwards compatibility
+            videoClips.push(path.join(MEDIA_DIR, fileGroup.video));
         }
     }
+    
+    // Set both new ordered content and legacy format
+    frame.content.orderedContent = orderedContent;
     frame.content.additionalImages = additionalImages;
     frame.content.videoClips = videoClips;
     frame.content.notes = notes;

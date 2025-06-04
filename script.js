@@ -89,30 +89,58 @@ function openVideoModal(frame, index) { // Pass index here
         description.textContent = content.description;
         contentDiv.appendChild(description);
     }
-    if (content.notes) {
-        const notes = document.createElement('p');
-        notes.textContent = content.notes;
-        contentDiv.appendChild(notes);
-    }
 
-    if (content.additionalImages && content.additionalImages.length > 0) {
-        content.additionalImages.forEach(imgPath => {
-            const img = document.createElement('img');
-            img.src = imgPath;
-            img.alt = 'Additional image';
-            img.style.maxWidth = '100%'; // Basic styling
-            contentDiv.appendChild(img);
+    // Use new ordered content if available, otherwise fall back to old format
+    if (content.orderedContent && content.orderedContent.length > 0) {
+        content.orderedContent.forEach(item => {
+            if (item.type === 'text') {
+                const textElement = document.createElement('p');
+                textElement.className = 'notes-text';
+                textElement.textContent = item.content;
+                contentDiv.appendChild(textElement);
+            } else if (item.type === 'image') {
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = 'Additional image';
+                img.style.maxWidth = '100%';
+                contentDiv.appendChild(img);
+            } else if (item.type === 'video') {
+                const vid = document.createElement('video');
+                vid.src = item.src;
+                vid.controls = true;
+                vid.style.maxWidth = '100%';
+                contentDiv.appendChild(vid);
+            }
         });
-    }
+    } else {
+        // Legacy format fallback
+        if (content.notes) {
+            const notes = document.createElement('p');
+            notes.className = 'notes-text';
+            // Use textContent with CSS white-space: pre-line for consistent line spacing
+            notes.textContent = content.notes;
+            contentDiv.appendChild(notes);
+        }
 
-    if (content.videoClips && content.videoClips.length > 0) {
-        content.videoClips.forEach(videoPath => {
-            const vid = document.createElement('video');
-            vid.src = videoPath;
-            vid.controls = true;
-            vid.style.maxWidth = '100%'; // Basic styling
-            contentDiv.appendChild(vid);
-        });
+        if (content.additionalImages && content.additionalImages.length > 0) {
+            content.additionalImages.forEach(imgPath => {
+                const img = document.createElement('img');
+                img.src = imgPath;
+                img.alt = 'Additional image';
+                img.style.maxWidth = '100%'; // Basic styling
+                contentDiv.appendChild(img);
+            });
+        }
+
+        if (content.videoClips && content.videoClips.length > 0) {
+            content.videoClips.forEach(videoPath => {
+                const vid = document.createElement('video');
+                vid.src = videoPath;
+                vid.controls = true;
+                vid.style.maxWidth = '100%'; // Basic styling
+                contentDiv.appendChild(vid);
+            });
+        }
     }
 
     const singleFrameDuration = getFrameDuration(frame);

@@ -457,4 +457,12 @@ body.modal-open {
     width: 0.9rem; /* Match the font size of frame number */
     height: 0.9rem;
     filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.5)); /* Shadow effect for all icons */
+}
+
+/* Notes styling for better line spacing and readability */
+.notes-text {
+    line-height: 1.4 !important; /* Reduced line spacing */
+    margin-bottom: 20px !important;
+    color: #ccc; /* Slightly lighter color for readability */
+    white-space: pre-line; /* Preserve line breaks with consistent spacing */
 } 
