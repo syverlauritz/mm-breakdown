@@ -3,86 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intro - Memory Maker</title>
+    <title>Windows 98 Desktop</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            min-height: 100vh;
-            color: white;
-            padding: 2rem;
+            font-family: "Tahoma", "MS Sans Serif", sans-serif;
+            font-size: 11px;
+            background: linear-gradient(45deg, #5a9fd4 0%, #306998 100%);
+            height: 100vh;
+            overflow: hidden;
+            cursor: default;
+            user-select: none;
         }
-        
-        .nav-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            z-index: 100;
+
+        .desktop { 
+            height: 100vh; 
+            position: relative;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" fill="%23306998"/><rect width="1" height="1" x="0" y="0" fill="%235a9fd4" opacity="0.1"/></svg>');
         }
-        
-        .nav-header a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
+
+        .taskbar {
+            position: fixed; bottom: 0; left: 0; right: 0; height: 28px;
+            background: linear-gradient(to bottom, #ece9d8 0%, #d6d3ce 100%);
+            border-top: 1px solid #ffffff;
+            display: flex; align-items: center; padding: 0 4px; z-index: 1000;
+            box-shadow: inset 0 1px 0 #ffffff;
         }
-        
-        .nav-header a:hover {
-            opacity: 0.8;
+
+        .start-button {
+            height: 24px; padding: 0 12px;
+            background: linear-gradient(to bottom, #ece9d8 0%, #d6d3ce 100%);
+            border: 1px outset #d6d3ce; font-weight: bold; cursor: pointer;
+            border-radius: 2px; font-size: 11px;
+            display: flex; align-items: center;
         }
-        
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding-top: 6rem;
+
+        .start-button:active {
+            border: 1px inset #d6d3ce;
+            background: linear-gradient(to bottom, #d6d3ce 0%, #ece9d8 100%);
         }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
+
+        .time {
+            margin-left: auto; padding: 0 8px; 
+            border: 1px inset #d6d3ce; height: 20px; 
+            display: flex; align-items: center; font-size: 11px;
+            background: #ece9d8; border-radius: 1px;
         }
-        
-        .intro-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            text-align: center;
-            opacity: 0.9;
+
+        .window {
+            position: absolute; 
+            background: linear-gradient(to bottom, #ece9d8 0%, #d6d3ce 100%);
+            border: 2px outset #d6d3ce;
+            min-width: 400px; min-height: 300px; display: none;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            border-radius: 1px;
         }
-        
-        .placeholder {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
+
+        .window.active { display: block; }
+
+        .window.frozen {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .window.frozen .titlebar {
+            background: linear-gradient(to right, #808080 0%, #c0c0c0 50%, #808080 100%);
+            color: #666;
+        }
+
+        .window.frozen .control-btn {
+            background: #c0c0c0;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .window.frozen .window-content {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .titlebar {
+            height: 20px; 
+            background: linear-gradient(to right, #0a246a 0%, #a6caf0 50%, #0a246a 100%);
+            color: white; font-weight: bold; font-size: 11px;
+            display: flex; align-items: center; padding: 0 6px; cursor: move;
+            border-bottom: 1px solid #316ac5;
+        }
+
+        .window-title { 
+            flex: 1; 
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+        }
+
+        .control-btn {
+            width: 16px; height: 14px; 
+            background: linear-gradient(to bottom, #ece9d8 0%, #d6d3ce 100%);
+            border: 1px outset #d6d3ce; font-size: 8px; 
+            cursor: pointer; color: black; display: flex;
+            align-items: center; justify-content: center;
+            border-radius: 1px; font-weight: bold;
+        }
+
+        .control-btn:active {
+            border: 1px inset #d6d3ce;
+            background: linear-gradient(to bottom, #d6d3ce 0%, #ece9d8 100%);
+        }
+
+        .window-content {
+            padding: 12px; height: calc(100% - 20px); 
+            background: #ece9d8; display: flex; flex-direction: column;
+        }
+
+        .error-message {
+            margin-bottom: 12px; font-size: 11px; color: #000;
+        }
+
+        .image-container {
+            flex: 1; display: flex; justify-content: center; align-items: center;
+            border: 2px inset #d6d3ce; background: #ffffff;
+            min-height: 250px; overflow: hidden;
+        }
+
+        .error-image {
+            max-width: 100%; max-height: 100%;
+            object-fit: contain; display: block;
+        }
+
+        .shutdown-screen {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000; color: #FF8000; display: none;
+            flex-direction: column; align-items: center; justify-content: center;
+            font-family: "MS Sans Serif", monospace, sans-serif;
+            font-size: 18px; font-weight: bold; z-index: 2000; cursor: pointer;
+            text-align: center; line-height: 1.6;
+        }
+
+        .resize-handle { position: absolute; background: transparent; }
+        .resize-handle.se { 
+            bottom: -5px; right: -5px; width: 12px; height: 12px; 
+            cursor: se-resize; 
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path d="M12,12 L12,8 L8,12 Z M12,12 L12,4 L4,12 Z" fill="%23666"/></svg>');
+        }
+        .resize-handle.s { bottom: -5px; left: 12px; right: 12px; height: 5px; cursor: s-resize; }
+        .resize-handle.e { top: 12px; right: -5px; bottom: 12px; width: 5px; cursor: e-resize; }
+
+        /* Windows 98 style desktop icons */
+        .desktop-icon {
+            position: absolute;
+            width: 72px; height: 64px; top: 20px; left: 20px;
+            display: flex; flex-direction: column; align-items: center;
+            color: white; font-size: 9px; text-align: center;
+            cursor: pointer; padding: 4px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .desktop-icon:hover {
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+        }
+
+        .icon-img {
+            width: 32px; height: 32px; margin-bottom: 4px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="18" fill="%23c0c0c0" stroke="%23808080"/><rect x="6" y="8" width="20" height="14" fill="%23008080"/><rect x="2" y="4" width="4" height="2" fill="%23c0c0c0"/><rect x="26" y="4" width="4" height="2" fill="%23c0c0c0"/></svg>') no-repeat center;
         }
     </style>
 </head>
 <body>
-    <nav class="nav-header">
-        <a href="index.html">← Back to Hub</a>
-    </nav>
-    
-    <div class="content">
-        <h1>Introduction</h1>
-        <p class="intro-text">Welcome to the Memory Maker project journey.</p>
-        
-        <div class="placeholder">
-            <h3>Content Coming Soon</h3>
-            <p>This introduction section will contain project overview, goals, and welcome content.</p>
+    <div class="desktop">
+        <!-- Desktop Icon -->
+        <div class="desktop-icon">
+            <div class="icon-img"></div>
+            <div>My Computer</div>
+        </div>
+
+        <!-- Error Windows -->
+        <div class="window active" id="window-0" style="top: 80px; left: 100px; width: 450px; height: 500px;">
+            <div class="titlebar">
+                <div class="window-title">Application Error</div>
+                <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(0)">×</div>
+            </div>
+            <div class="window-content">
+                <div class="error-message">This program has performed an illegal operation and will be shut down.</div>
+                <div class="image-container">
+                    <img class="error-image" src="assets/img/intro1.PNG" alt="Error Screenshot">
+                </div>
+            </div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+        </div>
+
+        <div class="window" id="window-1" style="top: 120px; left: 150px; width: 450px; height: 500px;">
+            <div class="titlebar">
+                <div class="window-title">System Error</div>
+                <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(1)">×</div>
+            </div>
+            <div class="window-content">
+                <div class="error-message">A fatal exception 0E has occurred at 0028:C0034B21.</div>
+                <div class="image-container">
+                    <img class="error-image" src="assets/img/intro2.png" alt="Error Screenshot">
+                </div>
+            </div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+        </div>
+
+        <div class="window" id="window-2" style="top: 160px; left: 200px; width: 450px; height: 500px;">
+            <div class="titlebar">
+                <div class="window-title">Memory Error</div>
+                <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(2)">×</div>
+            </div>
+            <div class="window-content">
+                <div class="error-message">Insufficient memory to complete this operation.</div>
+                <div class="image-container">
+                    <img class="error-image" src="assets/img/intro3.PNG" alt="Error Screenshot">
+                </div>
+            </div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+        </div>
+
+        <div class="window" id="window-3" style="top: 100px; left: 250px; width: 450px; height: 500px;">
+            <div class="titlebar">
+                <div class="window-title">Page Fault Error</div>
+                <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(3)">×</div>
+            </div>
+            <div class="window-content">
+                <div class="error-message">The instruction at 0x77f5d9b3 referenced memory at 0x00000000.</div>
+                <div class="image-container">
+                    <img class="error-image" src="assets/img/intro4.PNG" alt="Error Screenshot">
+                </div>
+            </div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+        </div>
+
+        <div class="window" id="window-4" style="top: 60px; left: 300px; width: 450px; height: 500px;">
+            <div class="titlebar">
+                <div class="window-title">Runtime Error</div>
+                <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(4)">×</div>
+            </div>
+            <div class="window-content">
+                <div class="error-message">Microsoft Visual C++ Runtime Library - Runtime Error!</div>
+                <div class="image-container">
+                    <video class="error-image" src="assets/img/intro5.mov" autoplay muted loop alt="Error Video"></video>
+                </div>
+            </div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+        </div>
+
+        <div class="window" id="window-5" style="top: 140px; left: 350px; width: 450px; height: 500px;">
+            <div class="titlebar">
+                <div class="window-title">Blue Screen of Death</div>
+                <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(5)">×</div>
+            </div>
+            <div class="window-content">
+                <div class="error-message">Windows has encountered a critical error and needs to restart.</div>
+                <div class="image-container">
+                    <img class="error-image" src="assets/img/intro6.png" alt="Error Screenshot">
+                </div>
+            </div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+        </div>
+
+        <div class="window" id="window-6" style="top: 90px; left: 400px; width: 450px; height: 500px;">
+            <div class="titlebar">
+                <div class="window-title">Access Violation</div>
+                <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(6)">×</div>
+            </div>
+            <div class="window-content">
+                <div class="error-message">The application has attempted to access memory that is not valid.</div>
+                <div class="image-container">
+                    <img class="error-image" src="assets/img/intro7.png" alt="Error Screenshot">
+                </div>
+            </div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+        </div>
+
+        <div class="window" id="window-7" style="top: 180px; left: 450px; width: 450px; height: 500px;">
+            <div class="titlebar">
+                <div class="window-title">System Crash</div>
+                <div class="control-btn" onclick="if (!this.closest('.window').classList.contains('frozen')) closeWindow(7)">×</div>
+            </div>
+            <div class="window-content">
+                <div class="error-message">The system has encountered a fatal error and must be restarted.</div>
+                <div class="image-container">
+                    <img class="error-image" src="assets/img/intro8.JPG" alt="Error Screenshot">
+                </div>
+            </div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+        </div>
+
+        <!-- Taskbar -->
+        <div class="taskbar">
+            <div class="start-button">🪟 Start</div>
+            <div class="time" id="current-time">3:14 PM</div>
         </div>
     </div>
+
+    <!-- Shutdown Screen -->
+    <div class="shutdown-screen" id="shutdown-screen">
+        <div>It is now safe to turn off<br>your computer.</div>
+    </div>
+
+    <!-- Audio -->
+    <audio id="error-sound" preload="auto">
+        <source src="assets/audio/error.wav" type="audio/wav">
+    </audio>
+
+    <script>
+        let currentWindow = 0;
+        const totalWindows = 8;
+        let isDragging = false, isResizing = false;
+        let dragData = {}, resizeData = {};
+
+        // Play error sound on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const sound = document.getElementById('error-sound');
+                if (sound) {
+                    sound.volume = 0.4;
+                    sound.play().catch(e => console.log('Sound failed:', e));
+                }
+            }, 1000);
+        });
+
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = 
+                now.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'});
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+
+        // Close window and show next
+        function closeWindow(index) {
+            const sound = document.getElementById('error-sound');
+            if (sound) {
+                sound.volume = 0.4;
+                sound.play().catch(e => console.log('Sound failed:', e));
+            }
+
+            // Freeze the current window instead of closing it
+            const currentWindow = document.getElementById('window-' + index);
+            currentWindow.classList.add('frozen');
+            currentWindow.classList.remove('active');
+
+            if (index < totalWindows - 1) {
+                setTimeout(() => {
+                    document.getElementById('window-' + (index + 1)).classList.add('active');
+                }, 400);
+            } else {
+                // All windows are now frozen, show shutdown screen
+                setTimeout(() => {
+                    document.getElementById('shutdown-screen').style.display = 'flex';
+                }, 800);
+            }
+        }
+
+        // Return to hub from shutdown screen
+        document.getElementById('shutdown-screen').onclick = () => {
+            window.location.href = 'index.html';
+        };
+
+        // Window dragging
+        document.addEventListener('mousedown', (e) => {
+            const titlebar = e.target.closest('.titlebar');
+            if (titlebar && !e.target.classList.contains('control-btn')) {
+                const win = titlebar.closest('.window');
+                // Don't allow dragging frozen windows
+                if (win.classList.contains('frozen')) return;
+                
+                isDragging = true;
+                const rect = win.getBoundingClientRect();
+                dragData = {
+                    window: win,
+                    offsetX: e.clientX - rect.left,
+                    offsetY: e.clientY - rect.top
+                };
+                e.preventDefault();
+            }
+
+            // Resizing
+            const handle = e.target.closest('.resize-handle');
+            if (handle) {
+                const win = handle.closest('.window');
+                // Don't allow resizing frozen windows
+                if (win.classList.contains('frozen')) return;
+                
+                isResizing = true;
+                const rect = win.getBoundingClientRect();
+                resizeData = {
+                    window: win,
+                    handle: handle.className.split(' ')[1],
+                    startX: e.clientX,
+                    startY: e.clientY,
+                    startWidth: rect.width,
+                    startHeight: rect.height
+                };
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging && dragData.window) {
+                const x = e.clientX - dragData.offsetX;
+                const y = e.clientY - dragData.offsetY;
+                const maxX = window.innerWidth - dragData.window.offsetWidth;
+                const maxY = window.innerHeight - dragData.window.offsetHeight - 28;
+                
+                dragData.window.style.left = Math.max(0, Math.min(x, maxX)) + 'px';
+                dragData.window.style.top = Math.max(0, Math.min(y, maxY)) + 'px';
+            }
+
+            if (isResizing && resizeData.window) {
+                const deltaX = e.clientX - resizeData.startX;
+                const deltaY = e.clientY - resizeData.startY;
+                let newWidth = resizeData.startWidth;
+                let newHeight = resizeData.startHeight;
+
+                if (resizeData.handle.includes('e')) newWidth += deltaX;
+                if (resizeData.handle.includes('s')) newHeight += deltaY;
+
+                newWidth = Math.max(400, newWidth);
+                newHeight = Math.max(300, newHeight);
+
+                resizeData.window.style.width = newWidth + 'px';
+                resizeData.window.style.height = newHeight + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            isResizing = false;
+            dragData = {};
+            resizeData = {};
+        });
+
+        // Prevent context menu and image dragging
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('dragstart', e => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
+    </script>
 </body>
-</html> 
+</html>
